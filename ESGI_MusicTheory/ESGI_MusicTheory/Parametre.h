@@ -11,12 +11,8 @@ private:
 	Instrument instru;
 
 public:
-	Parametre();
+	Parametre(void);
 	Parametre(Instrument);
 };
 
 
-Parametre::Parametre(Instrument _instru)
-{
-	instru = _instru;
-}

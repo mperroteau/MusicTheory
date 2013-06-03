@@ -9,28 +9,25 @@ class Instrument
 private:
 	string nom;
 	string type;
-	list<Note> Notes;
+	float note_basse;
+	float note_haute;
+	//list<Note> Notes;
 	
 public:
 	Instrument(string, string, float, float);
 	string GetNom();
 	string GetType();
+	float GetNote_basse();
+	float GetNote_haute();
 
-	void SetNom();
-	void SetType();
+	void SetNom(string);
+	void SetType(string);
+	void setNote_basse(float);
+	void setNote_haute(float);
 
 };
 
 
-Instrument::Instrument(string _nom, string _type, float _note_basse, float _note_haute)
-{
-	nom =_nom;
-	type = _type;
-	
-	/*
-	Pour toute note comprise entre note basse et note haute, ajouter la note à la liste
-	*/
 
-}
 
 

@@ -6,6 +6,4 @@ Score::Score(void)
 }
 
 
-Score::~Score(void)
-{
-}
+

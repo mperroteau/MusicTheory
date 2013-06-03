@@ -1,4 +1,5 @@
 #pragma once
+#include "Form_Parametres.h"
 
 namespace ESGI_MusicTheory {
 
@@ -77,8 +78,12 @@ namespace ESGI_MusicTheory {
 
 		}
 #pragma endregion
-	private: System::Void BT_RandomTest_Click(System::Object^  sender, System::EventArgs^  e) {
+private:System::Void BT_RandomTest_Click(System::Object^  sender, System::EventArgs^  e) {
 
-			 }
+			Form_Parametres^ form = gcnew Form_Parametres();
+			form->Show();
+
+	}
+	
 	};
 }

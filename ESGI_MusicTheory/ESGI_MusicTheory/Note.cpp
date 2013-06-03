@@ -1,11 +1,77 @@
 #include "Note.h"
 
 
-Note::Note(void)
+Note::Note(int _id, string _nom,string _nom_2, int _octave, float _frequence, string _image)
 {
+	id = _id;
+	nom = _nom;
+	nom_2 = _nom_2;
+	octave = _octave;
+	frequence = _frequence;
+
+	image = _image;
+}
+
+int Note::GetId()
+{
+	return id;
+}
+
+string Note::GetNom()
+{
+	return nom;
+}
+
+string Note::GetNom_2()
+{
+	return nom_2;
+}
+
+int Note::GetOctave()
+{
+	return octave;
+}
+
+float Note::GetFrequence()
+{
+	return frequence;
+}
+
+string Note::GetImage()
+{
+	return image;
 }
 
 
-Note::~Note(void)
+void Note::SetId(int _id)
 {
+	id = _id;
 }
+
+void Note::SetNom(string _nom)
+{
+	nom = _nom;
+}
+
+void Note::SetNom_2(string _nom_2)
+{
+	nom_2 = _nom_2;
+}
+
+void Note::SetOctave(int _octave)
+{
+	octave = _octave;
+}
+
+void Note::SetFrequence(float _frequence)
+{
+	frequence = _frequence;
+}
+
+void Note::SetImage(string _image)
+{
+	image = _image;
+}
+
+
+

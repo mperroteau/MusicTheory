@@ -80,7 +80,7 @@ int main()
 
        // return 0;
 
-	//Application::Run(gcnew Form_Main);
+	Application::Run(gcnew Form_Main);
 
 	}
 	return 0;

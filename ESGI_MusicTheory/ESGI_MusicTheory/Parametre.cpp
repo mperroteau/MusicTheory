@@ -1,11 +1,11 @@
 #include "Parametre.h"
+#include "Instrument.h"
 
 
-Parametre::Parametre(void)
-{
-}
+//Parametre::Parametre(Instrument _instru)
+//{
+//	instru = _instru;
+//}
 
 
-Parametre::~Parametre(void)
-{
-}
+
