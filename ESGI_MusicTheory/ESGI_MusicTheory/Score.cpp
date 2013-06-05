@@ -5,5 +5,3 @@ Score::Score(void)
 {
 }
 
-
-

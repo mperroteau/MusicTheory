@@ -14,6 +14,7 @@ private:
 	//list<Note> Notes;
 	
 public:
+	Instrument();
 	Instrument(string, string, float, float);
 	string GetNom();
 	string GetType();

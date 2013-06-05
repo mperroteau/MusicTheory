@@ -41,6 +41,9 @@
     <ClInclude Include="Score.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="Form_RandomTest.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -62,6 +65,9 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="Score.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Form_RandomTest.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>

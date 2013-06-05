@@ -1,5 +1,9 @@
 #include "Instrument.h"
 
+Instrument::Instrument()
+{
+
+}
 Instrument::Instrument(string _nom, string _type, float _note_basse, float _note_haute)
 {
 	nom =_nom;

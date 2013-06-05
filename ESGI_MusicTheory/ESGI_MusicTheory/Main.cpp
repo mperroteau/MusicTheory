@@ -13,7 +13,6 @@ using namespace System::Windows::Forms;
 using namespace std;
 
 
-
 int main()
 {
 
@@ -25,7 +24,8 @@ int main()
 
 	// le constructeur de ifstream permet d'ouvrir un fichier en lecture
 
-	//Récupére les notes du fichier csv
+	//Faire une fonction qui charge l'ensemble des données dans le main / ou données par données
+	//Début du chargement du fichier notes
 
 	ifstream f_notes("Data/Notes.csv"); 
 	string value;
@@ -69,16 +69,20 @@ int main()
 				i++;
 			}
 			new Note(n_id,n_nom,n_nom_2,n_octave,n_frequence,""); //Le dernier champs étant l'image -> TO DO
+			//Insérer toutes les images du programme dans un dossier avec pour nom l'id de la note
+			//+ "_" pour les dièses et bémoles
 
+			//Insérer l'ensemble des instruments dans une liste ou collection d'objets
+			//Insérer les scores
+			//Insérer les paramètres
 	}
-		
-		// Pour chaque objet dans une classe, afficher les éléments de l'objet
-		/*for(Note &note_courante:Note)
-		 {
-			
-		 }*/
 
-       // return 0;
+		f_notes.close();
+		//Fin du chargement du fichier Notes
+		
+		// Enregistrer tous les éléments dans une liste ou une collection et le faire passer entre les classes 
+		// ou / et WindowsForms
+		
 
 	Application::Run(gcnew Form_Main);
 
