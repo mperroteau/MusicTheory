@@ -1,7 +1,7 @@
 #include "Note.h"
 
 
-Note::Note(int _id, string _nom,string _nom_2, int _octave, float _frequence, string _image)
+Note::Note(int _id, string _nom,string _nom_2, int _octave, float _frequence, string _image, string _image_2)
 {
 	id = _id;
 	nom = _nom;
@@ -10,6 +10,12 @@ Note::Note(int _id, string _nom,string _nom_2, int _octave, float _frequence, st
 	frequence = _frequence;
 
 	image = _image;
+	image_2 = _image_2;
+}
+
+Note::~Note (void)
+{
+
 }
 
 int Note::GetId()
@@ -71,6 +77,11 @@ void Note::SetFrequence(float _frequence)
 void Note::SetImage(string _image)
 {
 	image = _image;
+}
+
+void Note::GetSong()
+{
+	//Joue la note courante
 }
 
 

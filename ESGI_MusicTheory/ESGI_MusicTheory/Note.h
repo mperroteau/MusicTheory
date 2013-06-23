@@ -13,10 +13,12 @@ private:
 	float frequence;
 	
 	string image;
+	string image_2;
 
 public:
 	Note(void);
-	Note(int, string, string, int, float, string);
+	Note(int, string, string, int, float, string, string);
+	~Note(void);
 	
 	int GetId();
 	string GetNom();
@@ -31,6 +33,7 @@ public:
 	void SetOctave(int);
 	void SetFrequence(float);
 	void SetImage(string);
+	void GetSong();
 };
 
 
