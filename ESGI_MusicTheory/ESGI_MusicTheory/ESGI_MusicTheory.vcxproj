@@ -134,6 +134,9 @@
     <EmbeddedResource Include="Form_Main.resx">
       <DependentUpon>Form_Main.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form_RandomTest.resx">
+      <DependentUpon>Form_RandomTest.h</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

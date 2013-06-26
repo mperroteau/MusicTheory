@@ -9,8 +9,8 @@ class Instrument
 private:
 	string nom;
 	string type;
-	float note_basse;
-	float note_haute;
+	Note note_basse;
+	Note note_haute;
 	//list<Note> Notes;
 	
 public:
@@ -18,13 +18,13 @@ public:
 	Instrument(string, string, float, float);
 	string GetNom();
 	string GetType();
-	float GetNote_basse();
-	float GetNote_haute();
+	Note GetNote_basse();
+	Note GetNote_haute();
 
 	void SetNom(string);
 	void SetType(string);
-	void setNote_basse(float);
-	void setNote_haute(float);
+	void setNote_basse(Note);
+	void setNote_haute(Note);
 
 };
 

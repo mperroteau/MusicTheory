@@ -2,6 +2,7 @@
 #include <string>
 #include <list>
 #include "Instrument.h"
+#include "Main.cpp"
 
 using namespace std;
 

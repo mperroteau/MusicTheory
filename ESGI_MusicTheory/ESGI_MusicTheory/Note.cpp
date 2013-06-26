@@ -1,4 +1,5 @@
 #include "Note.h"
+#include "Main.cpp"
 
 
 Note::Note(int _id, string _nom,string _nom_2, int _octave, float _frequence, string _image, string _image_2)
@@ -84,5 +85,38 @@ void Note::GetSong()
 	//Joue la note courante
 }
 
+bool Note::IsSong(float _frequence)
+{
+	//TO DO : Appliquer une marge
+	if (frequence == _frequence)
+		return true;
+	else
+		return false;
 
+}
+
+Note Note::getNoteByFrequence(float _frequence)
+{
+	for (Note n : Notes)
+	{
+		if (_frequence == n.GetFrequence())
+			return n;
+	}
+
+}
+
+Note Note::getNoteById(int _id)
+{
+	for (Note n : Notes)
+	{
+		if (_id == n.GetId())
+			return n;
+	}
+}
+
+bool Note::Listen()
+{
+	//Attend la reponse
+	return true;
+}
 

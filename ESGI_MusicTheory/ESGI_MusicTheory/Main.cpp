@@ -76,6 +76,9 @@ list<Note> setNotes(list<Note>& Notes)
 
 }
 
+static list<Note> Notes;
+static list<Instrument> Instruments;
+
 int main()
 {
 	//Lire les fichiers CSV et créer des objets depuis ces données
@@ -91,8 +94,10 @@ int main()
 
 
 	
-	list<Note> Notes; // Liste de notes
-	list<Instrument> Instruments;
+	//static list<Note> Notes; // Liste de notes
+	//static list<Instrument> Instruments;
+
+	/*Génération de la liste de notes à partir du csv*/
 
 	ifstream f_notes("Data/Notes.csv"); 
 	string value;
@@ -144,8 +149,65 @@ int main()
 		f_notes.close();
 	}
 
+
+	/*Génération de la liste d'instruments à partir du csv*/
+
+	ifstream f_instuments("Data/Instruments.csv"); 
+
+	if (f_instuments)
+	{
+				string i_nom = "";
+		string i_type = "";
+		float i_note_basse = NULL;
+		float i_note_haute = NULL;
+		
+		while ( getline( f_instuments, value ) )
+		{
+			char *sArr = new char[value.length()+1];
+			strcpy(sArr, value.c_str());
+			// Declare char pointer sPtr for the tokens.
+			char *sPtr;
+			// Get all the tokens with " " as delimiter.
+			sPtr = strtok(sArr, ";");
+
+			int i =1;	
+ 
+			// For all tokens.
+			while(sPtr != NULL) 
+			{
+				if (i==1)
+					i_nom = sPtr;
+				else if (i==2)
+					i_type = sPtr;
+				else if (i==3)
+					i_note_basse = atof(sPtr);
+				else if (i==4)
+					i_note_haute = atof(sPtr);
+
+					
+				// Go to the next word.
+				sPtr = strtok(NULL, ";");
+
+				i++;
+			}
+			//Note *notecourante = new Note(n_id,n_nom,n_nom_2,n_octave,n_frequence,"", ""); //Le dernier champs étant l'image -> TO DO
+			Instruments.push_back(Instrument(i_nom,i_type,i_note_basse,i_note_haute));
+			
+			
+	}
+
+		f_instuments.close();
+	}
+
+	
 		 for(Note n : Notes) //parcours de la liste
-			 cout<< n.GetFrequence() << "\n";
+		 {
+			 cout<< n.GetNom() << " - " << n.GetNom_2();
+			 cout<< " - "<<n.GetFrequence() << "\n";
+		 }
+
+		 for(Instrument i : Instruments)
+			 cout<< i.GetNom() <<"\n";
       
 
 		//Insérer les instruments
