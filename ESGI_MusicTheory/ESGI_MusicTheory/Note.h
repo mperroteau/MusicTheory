@@ -46,6 +46,6 @@ public:
 	
 };
 
-static list<Note> Notes ;
+static list<Note> Notes;
 
 

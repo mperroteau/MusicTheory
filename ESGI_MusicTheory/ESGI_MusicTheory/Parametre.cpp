@@ -10,6 +10,11 @@ Parametre::Parametre(Instrument _instru)
 	instru = _instru;
 }
 
+Parametre::~Parametre (void)
+{
+
+}
+
 Instrument Parametre::getInstru()
 {
 	return instru;
@@ -29,4 +34,5 @@ void Parametre::setNiveau(int _niveau)
 {
 	niveau = _niveau;
 }
+
 

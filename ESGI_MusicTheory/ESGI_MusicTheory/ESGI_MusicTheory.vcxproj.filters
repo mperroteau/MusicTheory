@@ -19,9 +19,6 @@
     <Filter Include="DLL">
       <UniqueIdentifier>{42c9f53a-0406-4606-8375-a60d28e8c673}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Fichiers d%27en-tête\OpenAL">
-      <UniqueIdentifier>{8fa36059-c1f3-431f-b082-1a67203ff569}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\Instruments.csv">
@@ -85,12 +82,6 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\..\..\Program Files (x86)\FMOD SoundSystem\FMOD Programmers API Windows\api\inc\fmod_output.h">
       <Filter>Fichiers d%27en-tête\FMODEx</Filter>
-    </ClInclude>
-    <ClInclude Include="OpenAL\al.h">
-      <Filter>Fichiers d%27en-tête\OpenAL</Filter>
-    </ClInclude>
-    <ClInclude Include="OpenAL\alc.h">
-      <Filter>Fichiers d%27en-tête\OpenAL</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

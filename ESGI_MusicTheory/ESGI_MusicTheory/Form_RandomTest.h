@@ -1,5 +1,6 @@
 #pragma once
 #include "Note.h"
+#include "Parametre.h"
 
 namespace ESGI_MusicTheory {
 
@@ -145,5 +146,7 @@ namespace ESGI_MusicTheory {
 #pragma endregion
 	private: System::Void label1_Click(System::Object^  sender, System::EventArgs^  e) {
 			 }
+
+			 //void StartTest (int, Parametre);
 	};
 }

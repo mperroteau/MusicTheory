@@ -4,7 +4,6 @@
 #include "Note.h"
 
 
-
 void StartTest(int nbNotes, Parametre parametres)
 {
 
@@ -12,11 +11,12 @@ void StartTest(int nbNotes, Parametre parametres)
 	{
 
 		int note = rand() % 100;
-		Note note_haute = parametres.getInstru().GetNote_haute();
-		Note note_basse = parametres.getInstru().GetNote_basse();
+		float note_haute = parametres.getInstru().GetNote_haute();
+		float note_basse = parametres.getInstru().GetNote_basse();
 
+		Note n =  n.getNoteById(note);
 
-		if (note > note_basse.GetId() && note < note_haute.GetId())
+		if (n.GetFrequence() > note_basse && n.GetFrequence() < note_haute)
 		{
 			for (Note n : Notes)
 			{

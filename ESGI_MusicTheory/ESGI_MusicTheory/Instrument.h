@@ -12,21 +12,21 @@ class Instrument
 private:
 	string nom;
 	string type;
-	Note note_basse;
-	Note note_haute;
+	float note_basse;
+	float note_haute;
 	
 public:
 	Instrument();
 	Instrument(string, string, float, float);
 	string GetNom();
 	string GetType();
-	Note GetNote_basse();
-	Note GetNote_haute();
+	float GetNote_basse();
+	float GetNote_haute();
 
 	void SetNom(string);
 	void SetType(string);
-	void setNote_basse(Note);
-	void setNote_haute(Note);
+	void setNote_basse(float);
+	void setNote_haute(float);
 
 };
 

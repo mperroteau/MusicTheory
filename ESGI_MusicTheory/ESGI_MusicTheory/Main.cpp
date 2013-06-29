@@ -70,6 +70,13 @@ int main()
 	}
 
 
+	
+	for(Note n : Notes) //parcours de la liste
+	{
+		cout<< n.GetNom() << " - " << n.GetNom_2();
+		cout<< " - "<<n.GetFrequence() << "\n";
+	}
+
 	/*Génération de la liste d'instruments à partir du csv*/
 
 	ifstream f_instuments("Data/Instruments.csv"); 
@@ -111,6 +118,7 @@ int main()
 				i++;
 			}
 			//Note *notecourante = new Note(n_id,n_nom,n_nom_2,n_octave,n_frequence,"", ""); //Le dernier champs étant l'image -> TO DO
+
 			Instruments.push_back(Instrument(i_nom,i_type,i_note_basse,i_note_haute));
 			
 			
@@ -120,18 +128,16 @@ int main()
 	}
 
 	
-		 for(Note n : Notes) //parcours de la liste
-		 {
-			 cout<< n.GetNom() << " - " << n.GetNom_2();
-			 cout<< " - "<<n.GetFrequence() << "\n";
-		 }
 
 		 for(Instrument i : Instruments)
-			 cout<< i.GetNom() <<"\n";
+			 cout<< i.GetNom() << " - " << printf("%f",i.GetNote_haute()) << "-"<<printf("%f",i.GetNote_basse()) <<"\n";
+
+
+			
       
-	//Application::Run(gcnew Form_Main);
-	Form_Parametres^ form = gcnew Form_Parametres();
-			form->Show();
+	Application::Run(gcnew Form_Main);
+	/*Form_Parametres^ form = gcnew Form_Parametres();
+			form->Show();*/
 	
 	return 0;
 }
