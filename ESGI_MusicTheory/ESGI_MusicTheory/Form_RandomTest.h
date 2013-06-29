@@ -1,5 +1,5 @@
 #pragma once
-#include "Main.cpp"
+#include "Note.h"
 
 namespace ESGI_MusicTheory {
 

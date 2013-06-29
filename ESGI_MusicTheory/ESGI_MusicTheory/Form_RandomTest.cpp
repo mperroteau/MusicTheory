@@ -2,8 +2,6 @@
 #include "Parametre.h"
 #include "Instrument.h"
 #include "Note.h"
-#include "Main.cpp"
-
 
 
 
@@ -24,7 +22,7 @@ void StartTest(int nbNotes, Parametre parametres)
 			{
 				if (note == n.GetId())
 				{
-					thisnote.value = n.GetNom();
+					//thisnote.value = n.GetNom();
 					bool b = false;
 					while (b==false)
 						b == n.Listen(); // Execute listen tant que 

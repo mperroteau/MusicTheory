@@ -4,6 +4,9 @@
 #include "Note.h"
 using namespace std;
 
+
+
+
 class Instrument
 {
 private:
@@ -11,7 +14,6 @@ private:
 	string type;
 	Note note_basse;
 	Note note_haute;
-	//list<Note> Notes;
 	
 public:
 	Instrument();
@@ -27,6 +29,8 @@ public:
 	void setNote_haute(Note);
 
 };
+
+static list<Instrument> Instruments;
 
 
 

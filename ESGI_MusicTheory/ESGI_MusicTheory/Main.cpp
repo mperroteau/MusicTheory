@@ -9,14 +9,10 @@
 #include "Instrument.h"
 #include "Form_Main.h"
 
+
 using namespace ESGI_MusicTheory;
 using namespace System::Windows::Forms;
 using namespace std;
-
-static list<Note> Notes;
-static list<Instrument> Instruments;
-
-
 
 
 int main()

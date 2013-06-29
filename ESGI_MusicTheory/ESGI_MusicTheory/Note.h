@@ -3,6 +3,8 @@
 #include <list>
 using namespace std;
 
+
+
 class Note
 {
 private:
@@ -43,5 +45,7 @@ public:
 	bool Listen();
 	
 };
+
+static list<Note> Notes ;
 
 
