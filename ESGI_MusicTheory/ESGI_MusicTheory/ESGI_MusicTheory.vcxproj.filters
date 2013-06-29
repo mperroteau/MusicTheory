@@ -13,6 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\FMODEx">
+      <UniqueIdentifier>{9069724c-6074-4802-89c5-dd30bb13cd00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DLL">
+      <UniqueIdentifier>{42c9f53a-0406-4606-8375-a60d28e8c673}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\OpenAL">
+      <UniqueIdentifier>{8fa36059-c1f3-431f-b082-1a67203ff569}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\Instruments.csv">
@@ -20,6 +29,18 @@
     </None>
     <None Include="Data\Notes.csv">
       <Filter>Fichiers de ressources</Filter>
+    </None>
+    <None Include="DLL\fmodex64.dll">
+      <Filter>DLL</Filter>
+    </None>
+    <None Include="DLL\fmodex.dll">
+      <Filter>DLL</Filter>
+    </None>
+    <None Include="DLL\fmodexL.dll">
+      <Filter>DLL</Filter>
+    </None>
+    <None Include="DLL\fmodexL64.dll">
+      <Filter>DLL</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -43,6 +64,33 @@
     </ClInclude>
     <ClInclude Include="Form_RandomTest.h">
       <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Program Files (x86)\FMOD SoundSystem\FMOD Programmers API Windows\api\inc\fmod.h">
+      <Filter>Fichiers d%27en-tête\FMODEx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Program Files (x86)\FMOD SoundSystem\FMOD Programmers API Windows\api\inc\fmod.hpp">
+      <Filter>Fichiers d%27en-tête\FMODEx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Program Files (x86)\FMOD SoundSystem\FMOD Programmers API Windows\api\inc\fmod_codec.h">
+      <Filter>Fichiers d%27en-tête\FMODEx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Program Files (x86)\FMOD SoundSystem\FMOD Programmers API Windows\api\inc\fmod_dsp.h">
+      <Filter>Fichiers d%27en-tête\FMODEx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Program Files (x86)\FMOD SoundSystem\FMOD Programmers API Windows\api\inc\fmod_errors.h">
+      <Filter>Fichiers d%27en-tête\FMODEx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Program Files (x86)\FMOD SoundSystem\FMOD Programmers API Windows\api\inc\fmod_memoryinfo.h">
+      <Filter>Fichiers d%27en-tête\FMODEx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\Program Files (x86)\FMOD SoundSystem\FMOD Programmers API Windows\api\inc\fmod_output.h">
+      <Filter>Fichiers d%27en-tête\FMODEx</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenAL\al.h">
+      <Filter>Fichiers d%27en-tête\OpenAL</Filter>
+    </ClInclude>
+    <ClInclude Include="OpenAL\alc.h">
+      <Filter>Fichiers d%27en-tête\OpenAL</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -73,6 +121,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Form_Main.resx">
+      <Filter>Fichiers de ressources</Filter>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_RandomTest.resx">
       <Filter>Fichiers de ressources</Filter>
     </EmbeddedResource>
   </ItemGroup>

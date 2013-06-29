@@ -46,9 +46,14 @@
       <Optimization>Disabled</Optimization>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalUsingDirectories>
+      </AdditionalUsingDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);OpenAL32.lib;ALut.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -67,8 +72,19 @@
   <ItemGroup>
     <None Include="Data\Instruments.csv" />
     <None Include="Data\Notes.csv" />
+    <None Include="DLL\fmodex.dll" />
+    <None Include="DLL\fmodex64.dll" />
+    <None Include="DLL\fmodexL.dll" />
+    <None Include="DLL\fmodexL64.dll" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\..\..\Program Files (x86)\FMOD SoundSystem\FMOD Programmers API Windows\api\inc\fmod.h" />
+    <ClInclude Include="..\..\..\..\..\..\Program Files (x86)\FMOD SoundSystem\FMOD Programmers API Windows\api\inc\fmod.hpp" />
+    <ClInclude Include="..\..\..\..\..\..\Program Files (x86)\FMOD SoundSystem\FMOD Programmers API Windows\api\inc\fmod_codec.h" />
+    <ClInclude Include="..\..\..\..\..\..\Program Files (x86)\FMOD SoundSystem\FMOD Programmers API Windows\api\inc\fmod_dsp.h" />
+    <ClInclude Include="..\..\..\..\..\..\Program Files (x86)\FMOD SoundSystem\FMOD Programmers API Windows\api\inc\fmod_errors.h" />
+    <ClInclude Include="..\..\..\..\..\..\Program Files (x86)\FMOD SoundSystem\FMOD Programmers API Windows\api\inc\fmod_memoryinfo.h" />
+    <ClInclude Include="..\..\..\..\..\..\Program Files (x86)\FMOD SoundSystem\FMOD Programmers API Windows\api\inc\fmod_output.h" />
     <ClInclude Include="Form_Main.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -80,6 +96,8 @@
     </ClInclude>
     <ClInclude Include="Instrument.h" />
     <ClInclude Include="Note.h" />
+    <ClInclude Include="OpenAL\al.h" />
+    <ClInclude Include="OpenAL\alc.h" />
     <ClInclude Include="Parametre.h" />
     <ClInclude Include="Score.h" />
   </ItemGroup>
