@@ -39,6 +39,7 @@
     <None Include="DLL\fmodexL64.dll">
       <Filter>DLL</Filter>
     </None>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Note.h">

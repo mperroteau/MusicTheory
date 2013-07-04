@@ -42,7 +42,8 @@ public:
 	Note getNoteByFrequence(float);
 	Note getNoteById(int);
 
-	bool Listen();
+	float Play();
+	float Listen();
 	
 };
 

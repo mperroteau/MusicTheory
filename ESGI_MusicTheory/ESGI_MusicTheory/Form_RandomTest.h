@@ -1,6 +1,9 @@
 #pragma once
+#include <sstream>
+
 #include "Note.h"
 #include "Parametre.h"
+
 
 namespace ESGI_MusicTheory {
 
@@ -24,9 +27,54 @@ namespace ESGI_MusicTheory {
 			//TODO: ajoutez ici le code du constructeur
 			
 			//
-
+			Instrument *i = new Instrument("Default", "Default", 261.6,523.2);
+			Parametre *p = new Parametre(*i);
+			
 
 		}
+
+		void StartTest(int _nbNotes, Parametre &_parametres)
+		{
+
+			for(int i = 0; i <= _nbNotes; i++)
+			{
+				// créer un flux de sortie
+				ostringstream _nbNotes_oss;
+				// écrire un nombre dans le flux
+				_nbNotes_oss << _nbNotes;
+				// récupérer une chaîne de caractères
+				string  _nbNotes_string = _nbNotes_oss.str();
+
+				this-> nbnotecourante ->Text = "1";
+				//this-> nbnotes -> Text -> _nbNotes_string;
+				int note = rand() % 100;
+				float note_haute = _parametres.getInstru().GetNote_haute();
+				float note_basse = _parametres.getInstru().GetNote_basse();
+
+				Note n =  n.getNoteById(note);
+
+				if (n.GetFrequence() > note_basse && n.GetFrequence() < note_haute)
+				{
+					for (Note n : Notes)
+					{
+						if (note == n.GetId())
+						{
+							/*thisnote.value = n.GetNom();*/
+							float current_frequence;
+							bool b = false;
+							while (b==false)
+								
+								current_frequence = n.Listen(); // Execute listen tant que 
+								// if ... b = current_frequence
+						}
+
+					
+					}
+				}
+			}
+
+		}
+		
 
 	protected:
 		/// <summary>
@@ -147,6 +195,6 @@ namespace ESGI_MusicTheory {
 	private: System::Void label1_Click(System::Object^  sender, System::EventArgs^  e) {
 			 }
 
-			 //void StartTest (int, Parametre);
+			 //
 	};
 }

@@ -94,13 +94,14 @@ namespace ESGI_MusicTheory {
 		}
 #pragma endregion
 private:System::Void BT_RandomTest_Click(System::Object^  sender, System::EventArgs^  e) {
-			Form_RandomTest^ form = gcnew Form_RandomTest();
-			form->Show();
+			Form_RandomTest^ form_rdt = gcnew Form_RandomTest();
+			form_rdt->Show();
+			
 	}
 	
 	private: System::Void BT_Parametres_Click(System::Object^  sender, System::EventArgs^  e) {
-			Form_Parametres^ form = gcnew Form_Parametres();
-			form->Show();
+			Form_Parametres^ form_p = gcnew Form_Parametres();
+			form_p->Show();
 			 }
 	};
 }

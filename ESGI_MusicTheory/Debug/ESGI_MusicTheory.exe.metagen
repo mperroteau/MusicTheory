@@ -21,6 +21,8 @@ Class ESGI_MusicTheory.Form_Parametres: AutoLayout, AnsiClass, Class, Public, Be
 Class ESGI_MusicTheory.Form_RandomTest: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    StartTest(Int32, Parametre* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
 Class ESGI_MusicTheory.Form_Main: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName

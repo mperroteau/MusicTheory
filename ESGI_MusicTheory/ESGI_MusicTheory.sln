@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ESGI_MusicTheory", "ESGI_MusicTheory\ESGI_MusicTheory.vcxproj", "{438A068E-7F42-4E56-8256-4930126B4F12}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FMODEx_Listen", "FMODEx_Listen\FMODEx_Listen.vcxproj", "{F886E58D-5A67-4067-B0AF-468F7A90812F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FMODEx_Play", "FMODEx_Play\FMODEx_Play.vcxproj", "{4A48D3D4-3B38-4128-B640-D69FA4D8D948}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -13,6 +17,14 @@ Global
 		{438A068E-7F42-4E56-8256-4930126B4F12}.Debug|Win32.Build.0 = Debug|Win32
 		{438A068E-7F42-4E56-8256-4930126B4F12}.Release|Win32.ActiveCfg = Release|Win32
 		{438A068E-7F42-4E56-8256-4930126B4F12}.Release|Win32.Build.0 = Release|Win32
+		{F886E58D-5A67-4067-B0AF-468F7A90812F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F886E58D-5A67-4067-B0AF-468F7A90812F}.Debug|Win32.Build.0 = Debug|Win32
+		{F886E58D-5A67-4067-B0AF-468F7A90812F}.Release|Win32.ActiveCfg = Release|Win32
+		{F886E58D-5A67-4067-B0AF-468F7A90812F}.Release|Win32.Build.0 = Release|Win32
+		{4A48D3D4-3B38-4128-B640-D69FA4D8D948}.Debug|Win32.ActiveCfg = Debug|Win32
+		{4A48D3D4-3B38-4128-B640-D69FA4D8D948}.Debug|Win32.Build.0 = Debug|Win32
+		{4A48D3D4-3B38-4128-B640-D69FA4D8D948}.Release|Win32.ActiveCfg = Release|Win32
+		{4A48D3D4-3B38-4128-B640-D69FA4D8D948}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

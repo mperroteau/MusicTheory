@@ -1,11 +1,21 @@
 #include "Note.h"
 #include <stdio.h>
 #include <iostream>
+#include "fmod.hpp"
+#include "fmod_errors.h"
+#include <iostream>
+#include <Windows.h>
+#include <fmod.h>
+#include <stdlib.h>
+
+#define _USE_MATH_DEFINES
+ 
+#include <math.h>
 
 
 
 
-//#include "FMODEx\fmod.h"
+#include "FMODEx\fmod.h"
 
 Note::Note()
 {
@@ -58,7 +68,6 @@ string Note::GetImage()
 {
 	return image;
 }
-
 
 void Note::SetId(int _id)
 {
@@ -174,88 +183,87 @@ Note Note::getNoteById(int _id)
 	}
 }
 
-
-bool Note::Listen()
+ 
+void ERRCHECK(FMOD_RESULT result)
 {
-	// FMOD
- //   int input, output;
- //
- //   FMOD_SYSTEM *system;
- //
- //   FMOD_System_Create(&system);
- //   FMOD_System_Init(system, 2, FMOD_INIT_NORMAL, 0);
- //   FMOD_System_SetOutput(system, FMOD_OUTPUTTYPE_DSOUND);
- //
- //   FMOD_SOUND *sound;
- //   FMOD_System_CreateSound(system, 0, FMOD_2D | FMOD_SOFTWARE | FMOD_OPENUSER, 0, &sound);
- //
-	//// Ouput FMOD
- //
- //   FMOD_CHANNEL *channel = 0;
- //
-	//// Input FMOD
- //
- //   FMOD_CREATESOUNDEXINFO exinfo;
- //   FMOD_System_GetRecordNumDrivers(system, &input);
- //
- //   memset(&exinfo, 0, sizeof(FMOD_CREATESOUNDEXINFO));
- //
- //   exinfo.cbsize           = sizeof(FMOD_CREATESOUNDEXINFO);
- //   exinfo.numchannels      = 1;
- //   exinfo.format           = FMOD_SOUND_FORMAT_PCM16;
- //   exinfo.defaultfrequency = 44100;
- //   exinfo.length           = exinfo.defaultfrequency * sizeof(short) * exinfo.numchannels / 10;
- //   // Enregistrera pendant 10ms, si tu veux 100ms par exemple, enlève le "/ 10"
- //
- //   FMOD_System_CreateSound(system, 0, FMOD_2D | FMOD_SOFTWARE | FMOD_OPENUSER, &exinfo, &sound);
-
-
-	//float spectre[1024] = {0};
-
-	//char nomMicro[100] = {0};
-
-	//	/*Grâce à l'initialisation, tu as le nombre de micro connectés, dans la variable input.
-	//Tu peux parcourirr tous les micros et récupérer leurs noms en faisant :*/
-
-	//for(int i = 0; i < input; i++)
-	//{
-	//	FMOD_System_GetRecordDriverInfo(system, i, nomMicro, 100, 0);
-	//	printf("%d - %s\n", i, nomMicro);
-	//}
-
-	////Ensuite, idem avec output pour les hauts parleurs :
-	//char nomHP[100] = {0};
-	//for(int i = 0; i < output; i++)
-	//{
-	//	FMOD_System_GetDriverInfo(system, i, nomHP, 100, 0);
-	//	printf("%d - %s\n", i, nomHP);
-	//}
-
-	//// Défini les haut-parleurs
-	////FMOD_System_SetDriver(system, output);
-	//// Initialise l'envoi du son récupéré du micro dans les haut-parleurs
-	//// FMOD_Sound_SetMode(sound, FMOD_LOOP_NORMAL);
- //
-	//// Commence la récupération du son
-	//FMOD_System_RecordStart(system, input, sound, 1);
-	//// Commence l'envoi du son récupéré du micro dans les haut-parleurs
-	//FMOD_System_PlaySound(system, FMOD_CHANNEL_FREE, sound, 0, &channel);
-
-	////Et, enfin, dans la boucle principale, tu mets à jour le tableau des fréquences (qui se mets à jour toutes les 30ms il me semble).
-
-	//while(1)
-	//{
-	//	//FMOD_Channel_GetSpectrum(channel, spectre, LARGEUR_F, 0, FMOD_DSP_FFT_WINDOW_BLACKMANHARRIS);
-	//	float _frequence = FMOD_Channel_GetSpectrum(channel, spectre, 10, 0,FMOD_DSP_FFT_WINDOW_BLACKMANHARRIS);
-	//	if (frequence == _frequence)
-	//		return true;
-	//	
-	//	// Tu peux t'en servir exactmeent comme dans le tuto de m@teo21
- //
-	//	FMOD_System_Update(system);
-	//}
-
-	return false;
+    if (result != FMOD_OK)
+    {
+        printf("FMOD error! (%d) %s\n", result, FMOD_ErrorString(result));
+        exit(-1);
+    }
 }
+
+float Note::Play()
+{
+	FMOD::System    *system;
+    FMOD::Channel   *channel = 0;
+    FMOD::DSP       *dsp = 0;
+    FMOD_RESULT      result;
+    int              key;
+    unsigned int     version;
+
+	  /*
+        Create a System object and initialize.
+    */
+    result = FMOD::System_Create(&system);
+    ERRCHECK(result);
+
+    result = system->getVersion(&version);
+    ERRCHECK(result);
+
+    if (version < FMOD_VERSION)
+    {
+        printf("Error!  You are using an old version of FMOD %08x.  This program requires %08x\n", version, FMOD_VERSION);
+        return 0;
+    }
+
+    result = system->init(32, FMOD_INIT_NORMAL, NULL);
+    ERRCHECK(result);
+
+    /*
+        Create an oscillator DSP units for the tone.
+    */
+    result = system->createDSPByType(FMOD_DSP_TYPE_OSCILLATOR, &dsp);
+    ERRCHECK(result);
+	//result = dsp->setParameter(FMOD_DSP_OSCILLATOR_RATE, 440.0f);       /* musical note 'A' */
+	result = dsp->setParameter(FMOD_DSP_OSCILLATOR_RATE, frequence);  /*Note courante */
+    ERRCHECK(result);
+
+	/*Frequence*/
+
+
+	 system->update();
+
+	  {
+			float frequency = frequence, volume = 0, pan = 0;
+			result = system->playDSP(FMOD_CHANNEL_REUSE, dsp, true, &channel);
+            channel->setVolume(0.9f);
+            result = dsp->setParameter(FMOD_DSP_OSCILLATOR_TYPE, 0);
+            ERRCHECK(result);
+            channel->setPaused(false);
+
+            bool playing = true;
+			 
+          
+            if (channel)
+            {
+                channel->getFrequency(&frequency);
+                channel->getVolume(&volume);
+                channel->getPan(&pan);
+                channel->isPlaying(&playing);
+            }
+
+            printf("Channel %s : Frequency %.1f Volume %.1f Pan %.1f  \r", playing ? "playing" : "stopped", frequency, volume, pan);
+        }
+}
+
+float Note::Listen()
+{
+
+}
+
+	
+
+
 
 
