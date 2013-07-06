@@ -36,20 +36,25 @@ namespace ESGI_MusicTheory {
 			{
 				continu = false;
 				random_note = rand() % 97; 
-				Note currentNote = currentNote.getNoteById(random_note);
+				Note currentNote;
+				
+				for (Note n : Notes)
+					{
+						if (random_note == n.GetId())
+							currentNote = n;
+					}
 				min_frequence = _parametres.getInstru().GetNote_basse();
 				max_frequence = _parametres.getInstru().GetNote_haute();
 
 				std::string cn_name;
+				float current_frequence = currentNote.GetFrequence();
 
-				if (currentNote.GetFrequence() >= min_frequence && currentNote.GetFrequence() <= max_frequence)
+				if (current_frequence >= min_frequence && current_frequence <= max_frequence)
 				{
 					cn_name = currentNote.GetNom();
 					//this->frm_thisnote->Text = L"{0}", currentNote.GetNom();
 					//this->frm_nbnotecourante->Text = String::Format(L"{0}", nbcurrentnote);
 					
-
-
 					while (continu == false)
 					{
 						continu = currentNote.Listen();

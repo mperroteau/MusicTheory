@@ -21,6 +21,7 @@ int main()
 
 	ifstream f_notes("Data/Notes.csv"); 
 	string value;
+	list<Note> _Notes;
 
 	if (f_notes)
 	{
@@ -60,12 +61,9 @@ int main()
 
 				i++;
 			}
-			//Note *notecourante = new Note(n_id,n_nom,n_nom_2,n_octave,n_frequence,"", ""); //Le dernier champs étant l'image -> TO DO
 			Notes.push_back(Note(n_id,n_nom,n_nom_2,n_octave,n_frequence,"", ""));
 			
-			
-	}
-
+		}
 		f_notes.close();
 	}
 
