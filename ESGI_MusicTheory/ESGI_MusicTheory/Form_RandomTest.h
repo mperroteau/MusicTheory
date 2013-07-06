@@ -1,5 +1,6 @@
 #pragma once
 #include <sstream>
+#include <iostream>
 
 #include "Note.h"
 #include "Parametre.h"
@@ -20,6 +21,43 @@ namespace ESGI_MusicTheory {
 	public ref class Form_RandomTest : public System::Windows::Forms::Form
 	{
 	public:
+
+		void StartTest(int _nbNotes, Parametre &_parametres)
+		{
+			int random_note;
+			int nbcurrentnote = 0;
+			Note currentnote;
+			float min_frequence;
+			float max_frequence;
+			bool continu;
+
+			//this->frm_nbnotes->Text = String::Format(L"{0}", _nbNotes);
+			while (nbcurrentnote <= _nbNotes)
+			{
+				continu = false;
+				random_note = rand() % 97; 
+				Note currentNote = currentNote.getNoteById(random_note);
+				min_frequence = _parametres.getInstru().GetNote_basse();
+				max_frequence = _parametres.getInstru().GetNote_haute();
+
+				std::string cn_name;
+
+				if (currentNote.GetFrequence() >= min_frequence && currentNote.GetFrequence() <= max_frequence)
+				{
+					cn_name = currentNote.GetNom();
+					//this->frm_thisnote->Text = L"{0}", currentNote.GetNom();
+					//this->frm_nbnotecourante->Text = String::Format(L"{0}", nbcurrentnote);
+					
+
+
+					while (continu == false)
+					{
+						continu = currentNote.Listen();
+					}
+				}
+				
+			}
+		}
 		Form_RandomTest(void)
 		{
 			InitializeComponent();
@@ -29,51 +67,11 @@ namespace ESGI_MusicTheory {
 			//
 			Instrument *i = new Instrument("Default", "Default", 261.6,523.2);
 			Parametre *p = new Parametre(*i);
+			StartTest(5, *p);
 			
 
 		}
 
-		void StartTest(int _nbNotes, Parametre &_parametres)
-		{
-
-			for(int i = 0; i <= _nbNotes; i++)
-			{
-				// créer un flux de sortie
-				ostringstream _nbNotes_oss;
-				// écrire un nombre dans le flux
-				_nbNotes_oss << _nbNotes;
-				// récupérer une chaîne de caractères
-				string  _nbNotes_string = _nbNotes_oss.str();
-
-				this-> nbnotecourante ->Text = "1";
-				//this-> nbnotes -> Text -> _nbNotes_string;
-				int note = rand() % 100;
-				float note_haute = _parametres.getInstru().GetNote_haute();
-				float note_basse = _parametres.getInstru().GetNote_basse();
-
-				Note n =  n.getNoteById(note);
-
-				if (n.GetFrequence() > note_basse && n.GetFrequence() < note_haute)
-				{
-					for (Note n : Notes)
-					{
-						if (note == n.GetId())
-						{
-							/*thisnote.value = n.GetNom();*/
-							float current_frequence;
-							bool b = false;
-							while (b==false)
-								
-								current_frequence = n.Listen(); // Execute listen tant que 
-								// if ... b = current_frequence
-						}
-
-					
-					}
-				}
-			}
-
-		}
 		
 
 	protected:
@@ -88,11 +86,16 @@ namespace ESGI_MusicTheory {
 			}
 		}
 	private: System::Windows::Forms::Label^  label1;
-	private: System::Windows::Forms::Label^  thisnote;
-	private: System::Windows::Forms::PictureBox^  picturenote;
-	private: System::Windows::Forms::Label^  frequence;
-	private: System::Windows::Forms::Label^  nbnotecourante;
-	private: System::Windows::Forms::Label^  nbnotes;
+	private: System::Windows::Forms::Label^  frm_thisnote;
+
+	private: System::Windows::Forms::PictureBox^  frm_picturenote;
+	private: System::Windows::Forms::Label^  frm_frequencecourante;
+	private: System::Windows::Forms::Label^  frm_nbnotecourante;
+
+
+
+	private: System::Windows::Forms::Label^  frm_nbnotes;
+
 	protected: 
 
 
@@ -111,12 +114,12 @@ namespace ESGI_MusicTheory {
 		void InitializeComponent(void)
 		{
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->thisnote = (gcnew System::Windows::Forms::Label());
-			this->picturenote = (gcnew System::Windows::Forms::PictureBox());
-			this->frequence = (gcnew System::Windows::Forms::Label());
-			this->nbnotecourante = (gcnew System::Windows::Forms::Label());
-			this->nbnotes = (gcnew System::Windows::Forms::Label());
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->picturenote))->BeginInit();
+			this->frm_thisnote = (gcnew System::Windows::Forms::Label());
+			this->frm_picturenote = (gcnew System::Windows::Forms::PictureBox());
+			this->frm_frequencecourante = (gcnew System::Windows::Forms::Label());
+			this->frm_nbnotecourante = (gcnew System::Windows::Forms::Label());
+			this->frm_nbnotes = (gcnew System::Windows::Forms::Label());
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->frm_picturenote))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// label1
@@ -129,64 +132,64 @@ namespace ESGI_MusicTheory {
 			this->label1->Text = L"Note :";
 			this->label1->Click += gcnew System::EventHandler(this, &Form_RandomTest::label1_Click);
 			// 
-			// thisnote
+			// frm_thisnote
 			// 
-			this->thisnote->AutoSize = true;
-			this->thisnote->Location = System::Drawing::Point(106, 50);
-			this->thisnote->Name = L"thisnote";
-			this->thisnote->Size = System::Drawing::Size(70, 13);
-			this->thisnote->TabIndex = 1;
-			this->thisnote->Text = L"notecourante";
+			this->frm_thisnote->AutoSize = true;
+			this->frm_thisnote->Location = System::Drawing::Point(106, 50);
+			this->frm_thisnote->Name = L"frm_thisnote";
+			this->frm_thisnote->Size = System::Drawing::Size(90, 13);
+			this->frm_thisnote->TabIndex = 1;
+			this->frm_thisnote->Text = L"frm_notecourante";
 			// 
-			// picturenote
+			// frm_picturenote
 			// 
-			this->picturenote->Location = System::Drawing::Point(109, 81);
-			this->picturenote->Name = L"picturenote";
-			this->picturenote->Size = System::Drawing::Size(100, 50);
-			this->picturenote->TabIndex = 2;
-			this->picturenote->TabStop = false;
+			this->frm_picturenote->Location = System::Drawing::Point(109, 81);
+			this->frm_picturenote->Name = L"frm_picturenote";
+			this->frm_picturenote->Size = System::Drawing::Size(100, 50);
+			this->frm_picturenote->TabIndex = 2;
+			this->frm_picturenote->TabStop = false;
 			// 
-			// frequence
+			// frm_frequencecourante
 			// 
-			this->frequence->AutoSize = true;
-			this->frequence->Location = System::Drawing::Point(269, 50);
-			this->frequence->Name = L"frequence";
-			this->frequence->Size = System::Drawing::Size(100, 13);
-			this->frequence->TabIndex = 3;
-			this->frequence->Text = L"frequence courante";
+			this->frm_frequencecourante->AutoSize = true;
+			this->frm_frequencecourante->Location = System::Drawing::Point(269, 50);
+			this->frm_frequencecourante->Name = L"frm_frequencecourante";
+			this->frm_frequencecourante->Size = System::Drawing::Size(120, 13);
+			this->frm_frequencecourante->TabIndex = 3;
+			this->frm_frequencecourante->Text = L"frm_frequence courante";
 			// 
-			// nbnotecourante
+			// frm_nbnotecourante
 			// 
-			this->nbnotecourante->AutoSize = true;
-			this->nbnotecourante->Location = System::Drawing::Point(50, 193);
-			this->nbnotecourante->Name = L"nbnotecourante";
-			this->nbnotecourante->Size = System::Drawing::Size(82, 13);
-			this->nbnotecourante->TabIndex = 4;
-			this->nbnotecourante->Text = L"nbnotecourante";
+			this->frm_nbnotecourante->AutoSize = true;
+			this->frm_nbnotecourante->Location = System::Drawing::Point(50, 193);
+			this->frm_nbnotecourante->Name = L"frm_nbnotecourante";
+			this->frm_nbnotecourante->Size = System::Drawing::Size(102, 13);
+			this->frm_nbnotecourante->TabIndex = 4;
+			this->frm_nbnotecourante->Text = L"frm_nbnotecourante";
 			// 
-			// nbnotes
+			// frm_nbnotes
 			// 
-			this->nbnotes->AutoSize = true;
-			this->nbnotes->Location = System::Drawing::Point(92, 193);
-			this->nbnotes->Name = L"nbnotes";
-			this->nbnotes->Size = System::Drawing::Size(45, 13);
-			this->nbnotes->TabIndex = 5;
-			this->nbnotes->Text = L"nbnotes";
+			this->frm_nbnotes->AutoSize = true;
+			this->frm_nbnotes->Location = System::Drawing::Point(92, 193);
+			this->frm_nbnotes->Name = L"frm_nbnotes";
+			this->frm_nbnotes->Size = System::Drawing::Size(65, 13);
+			this->frm_nbnotes->TabIndex = 5;
+			this->frm_nbnotes->Text = L"frm_nbnotes";
 			// 
 			// Form_RandomTest
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(473, 261);
-			this->Controls->Add(this->nbnotes);
-			this->Controls->Add(this->nbnotecourante);
-			this->Controls->Add(this->frequence);
-			this->Controls->Add(this->picturenote);
-			this->Controls->Add(this->thisnote);
+			this->Controls->Add(this->frm_nbnotes);
+			this->Controls->Add(this->frm_nbnotecourante);
+			this->Controls->Add(this->frm_frequencecourante);
+			this->Controls->Add(this->frm_picturenote);
+			this->Controls->Add(this->frm_thisnote);
 			this->Controls->Add(this->label1);
 			this->Name = L"Form_RandomTest";
 			this->Text = L"Quizz";
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->picturenote))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->frm_picturenote))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 

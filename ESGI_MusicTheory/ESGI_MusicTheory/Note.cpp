@@ -1,4 +1,5 @@
 #include "Note.h"
+#include "Form_RandomTest.h"
 #include <stdio.h>
 #include <iostream>
 #include "fmod.hpp"
@@ -7,9 +8,14 @@
 #include <Windows.h>
 #include <fmod.h>
 #include <stdlib.h>
+#include <list>
 
-#define _USE_MATH_DEFINES
- 
+#define OUTPUTRATE          48000
+#define SPECTRUMSIZE        8192
+#define SPECTRUMRANGE       ((float)OUTPUTRATE / 2.0f)      /* 0 to nyquist */
+
+#define BINSIZE      (SPECTRUMRANGE / (float)SPECTRUMSIZE)
+
 #include <math.h>
 
 
@@ -193,16 +199,81 @@ void ERRCHECK(FMOD_RESULT result)
     }
 }
 
-float Note::Play()
-{
-	FMOD::System    *system;
-    FMOD::Channel   *channel = 0;
-    FMOD::DSP       *dsp = 0;
-    FMOD_RESULT      result;
-    int              key;
-    unsigned int     version;
+//float Note::Play()
+//{
+//	FMOD::System    *system;
+//    FMOD::Channel   *channel = 0;
+//    FMOD::DSP       *dsp = 0;
+//    FMOD_RESULT      result;
+//    int              key = 0;
+//    unsigned int     version;
+//
+//	  /*
+//        Create a System object and initialize.
+//    */
+//    result = FMOD::System_Create(&system);
+//    ERRCHECK(result);
+//
+//    result = system->getVersion(&version);
+//    ERRCHECK(result);
+//
+//    if (version < FMOD_VERSION)
+//    {
+//        printf("Error!  You are using an old version of FMOD %08x.  This program requires %08x\n", version, FMOD_VERSION);
+//        return 0;
+//    }
+//
+//    result = system->init(32, FMOD_INIT_NORMAL, NULL);
+//    ERRCHECK(result);
+//
+//    /*
+//        Create an oscillator DSP units for the tone.
+//    */
+//    result = system->createDSPByType(FMOD_DSP_TYPE_OSCILLATOR, &dsp);
+//    ERRCHECK(result);
+//	//result = dsp->setParameter(FMOD_DSP_OSCILLATOR_RATE, 440.0f);       /* musical note 'A' */
+//	result = dsp->setParameter(FMOD_DSP_OSCILLATOR_RATE, frequence);  /*Note courante */
+//    ERRCHECK(result);
+//
+//	/*Frequence*/
+//
+//
+//	 system->update();
+//
+//	  
+//			float frequency = frequence, volume = 0, pan = 0;
+//			result = system->playDSP(FMOD_CHANNEL_REUSE, dsp, true, &channel);
+//            channel->setVolume(0.9f);
+//            result = dsp->setParameter(FMOD_DSP_OSCILLATOR_TYPE, 0);
+//            ERRCHECK(result);
+//            channel->setPaused(false);
+//
+//            bool playing = true;
+//			 
+//          
+//            if (channel)
+//            {
+//                channel->getFrequency(&frequency);
+//                channel->getVolume(&volume);
+//                channel->getPan(&pan);
+//                channel->isPlaying(&playing);
+//            }
+//
+//    //printf("Channel %s : Frequency %.1f Volume %.1f Pan %.1f  \r", playing ? "playing" : "stopped", frequency, volume, pan);
+//        
+//}
 
-	  /*
+float Note::Listen()
+{
+	FMOD::System          *system  = 0;
+    FMOD::Sound           *sound   = 0;
+    FMOD::Channel         *channel = 0;
+    FMOD_RESULT            result;
+    FMOD_CREATESOUNDEXINFO exinfo;
+    int                    key, driver, recorddriver, numdrivers, count, bin;
+    unsigned int           version;    
+
+    /*
         Create a System object and initialize.
     */
     result = FMOD::System_Create(&system);
@@ -217,48 +288,151 @@ float Note::Play()
         return 0;
     }
 
-    result = system->init(32, FMOD_INIT_NORMAL, NULL);
+    /* 
+        System initialization
+    */
+
+    
+    result = system->setOutput(FMOD_OUTPUTTYPE_DSOUND);
+  
+    ERRCHECK(result);
+    
+    /*
+        Enumerate playback devices
+    */
+
+    result = system->getNumDrivers(&numdrivers);
+    ERRCHECK(result);
+
+ 
+    for (count=0; count < numdrivers; count++)
+    {
+        char name[256];
+
+        result = system->getDriverInfo(count, name, 256, 0);
+        ERRCHECK(result);
+
+        printf("%d : %s\n", count + 1, name);
+    }
+
+
+    driver = 0;
+
+    result = system->setDriver(driver);
     ERRCHECK(result);
 
     /*
-        Create an oscillator DSP units for the tone.
+        Enumerate record devices
     */
-    result = system->createDSPByType(FMOD_DSP_TYPE_OSCILLATOR, &dsp);
-    ERRCHECK(result);
-	//result = dsp->setParameter(FMOD_DSP_OSCILLATOR_RATE, 440.0f);       /* musical note 'A' */
-	result = dsp->setParameter(FMOD_DSP_OSCILLATOR_RATE, frequence);  /*Note courante */
+
+    result = system->getRecordNumDrivers(&numdrivers);
     ERRCHECK(result);
 
-	/*Frequence*/
+  
+    for (count=0; count < numdrivers; count++)
+    {
+        char name[256];
+
+        result = system->getRecordDriverInfo(count, name, 256, 0);
+        ERRCHECK(result);
+
+        printf("%d : %s\n", count + 1, name);
+    }
 
 
-	 system->update();
+    recorddriver = 0;
 
-	  {
-			float frequency = frequence, volume = 0, pan = 0;
-			result = system->playDSP(FMOD_CHANNEL_REUSE, dsp, true, &channel);
-            channel->setVolume(0.9f);
-            result = dsp->setParameter(FMOD_DSP_OSCILLATOR_TYPE, 0);
-            ERRCHECK(result);
-            channel->setPaused(false);
 
-            bool playing = true;
-			 
-          
-            if (channel)
+    printf("\n");
+ 
+    result = system->setSoftwareFormat(OUTPUTRATE, FMOD_SOUND_FORMAT_PCM16, 1, 0, FMOD_DSP_RESAMPLER_LINEAR);
+    ERRCHECK(result);
+
+    result = system->init(32, FMOD_INIT_NORMAL, 0);
+    ERRCHECK(result);
+
+    /*
+        Create a sound to record to.
+    */
+    memset(&exinfo, 0, sizeof(FMOD_CREATESOUNDEXINFO));
+
+    exinfo.cbsize           = sizeof(FMOD_CREATESOUNDEXINFO);
+    exinfo.numchannels      = 1;
+    exinfo.format           = FMOD_SOUND_FORMAT_PCM16;
+    exinfo.defaultfrequency = OUTPUTRATE;
+    exinfo.length           = exinfo.defaultfrequency * sizeof(short) * exinfo.numchannels * 5;
+    
+    result = system->createSound(0, FMOD_2D | FMOD_SOFTWARE | FMOD_LOOP_NORMAL | FMOD_OPENUSER, &exinfo, &sound);
+    ERRCHECK(result);
+
+
+    result = system->recordStart(recorddriver, sound, true);
+    ERRCHECK(result);
+    
+    Sleep(200);      /* Give it some time to record something */
+    
+    result = system->playSound(FMOD_CHANNEL_REUSE, sound, false, &channel);
+    ERRCHECK(result);
+
+    /* Dont hear what is being recorded otherwise it will feedback.  Spectrum analysis is done before volume scaling in the DSP chain */
+    result = channel->setVolume(0);
+    ERRCHECK(result);
+
+    bin = 0;
+
+    /*
+        Main loop.
+    */
+    do
+    {
+        static float spectrum[SPECTRUMSIZE];
+        float        dominanthz = 0;
+        float        max;
+        Note          dominantnote;
+        float        binsize = BINSIZE;
+
+        result = channel->getSpectrum(spectrum, SPECTRUMSIZE, 0, FMOD_DSP_FFT_WINDOW_TRIANGLE);
+        ERRCHECK(result);
+
+        max = 0;
+
+        for (count = 0; count < SPECTRUMSIZE; count++)
+        {
+            if (spectrum[count] > 0.01f && spectrum[count] > max)
             {
-                channel->getFrequency(&frequency);
-                channel->getVolume(&volume);
-                channel->getPan(&pan);
-                channel->isPlaying(&playing);
+                max = spectrum[count];
+                bin = count;
             }
+        }        
 
-            printf("Channel %s : Frequency %.1f Volume %.1f Pan %.1f  \r", playing ? "playing" : "stopped", frequency, volume, pan);
-        }
-}
+        dominanthz  = (float)bin * BINSIZE;       /* dominant frequency min */
 
-float Note::Listen()
-{
+		//for (list<Note>::iterator i(Notes.begin()); i != Notes.end(); i++)
+		//{
+		//	Note n_courant = *i;
+		//	//Note n_suivant = *i++;
+		//	if (dominanthz >= (n_courant.frequence - 50.0) && dominanthz < (n_courant.frequence + 50.0))
+		//	{
+		//		if (fabs(dominanthz - (n_courant.frequence - 50.0)) < fabs(dominanthz - (n_courant.frequence + 50.0)))
+		//			dominantnote = n_courant;
+		//		
+		//	}
+		//}
+		//
+		//if (this == &dominantnote)
+		//	return true;
+		//else 
+		//	return false;
+		
+		
+        //printf("Detected rate : %7.1f -> %7.1f hz.  Detected musical note. %-3s (%7.1f hz)\r", dominanthz, ((float)bin + 0.99f) * BINSIZE, note[dominantnote], notefreq[dominantnote]);
+
+        system->update();
+
+        Sleep(10);
+
+    } while (key != 27);
+	
 
 }
 

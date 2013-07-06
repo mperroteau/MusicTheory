@@ -93,21 +93,9 @@ int main(int argc, char *argv[])
     printf("---------------------------------------------------------\n");
     printf("Press a corresponding number or ESC to quit\n");
 
-    do
-    {
-        key = _getch();
-    } while (key != 27 && key < '1' && key > '5');
     
-    switch (key)
-    {
-        case '1' :  result = system->setOutput(FMOD_OUTPUTTYPE_DSOUND);
-                    break;
-        case '2' :  result = system->setOutput(FMOD_OUTPUTTYPE_WINMM);
-                    break;
-        case '3' :  result = system->setOutput(FMOD_OUTPUTTYPE_ASIO);
-                    break;
-        default  :  return 1; 
-    }  
+    result = system->setOutput(FMOD_OUTPUTTYPE_DSOUND);
+  
     ERRCHECK(result);
     
     /*
@@ -132,15 +120,7 @@ int main(int argc, char *argv[])
     printf("---------------------------------------------------------\n");
     printf("Press a corresponding number or ESC to quit\n");
 
-    do
-    {
-        key = _getch();
-        if (key == 27)
-        {
-            return 0;
-        }
-        driver = key - '1';
-    } while (driver < 0 || driver >= numdrivers);
+    driver = 0;
 
     result = system->setDriver(driver);
     ERRCHECK(result);
@@ -168,7 +148,7 @@ int main(int argc, char *argv[])
     printf("Press a corresponding number or ESC to quit\n");
 
     recorddriver = 0;
-    do
+   /* do
     {
         key = _getch();
         if (key == 27)
@@ -176,7 +156,7 @@ int main(int argc, char *argv[])
             return 0;
         }
         recorddriver = key - '1';
-    } while (recorddriver < 0 || recorddriver >= numdrivers);
+    } while (recorddriver < 0 || recorddriver >= numdrivers);*/
 
     printf("\n");
  
