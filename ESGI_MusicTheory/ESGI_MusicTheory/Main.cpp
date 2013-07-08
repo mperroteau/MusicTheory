@@ -19,55 +19,7 @@ int main()
 {
 	/*Génération de la liste de notes à partir du csv*/
 
-	ifstream f_notes("Data/Notes.csv"); 
-	string value;
-	list<Note> _Notes;
-
-	if (f_notes)
-	{
-		int n_id = NULL;
-		string n_nom = "";
-		string n_nom_2 = "";
-		int n_octave = NULL;
-		float n_frequence = NULL;
-		
-		while ( getline( f_notes, value ) )
-		{
-			char *sArr = new char[value.length()+1];
-			strcpy(sArr, value.c_str());
-			// Declare char pointer sPtr for the tokens.
-			char *sPtr;
-			// Get all the tokens with " " as delimiter.
-			sPtr = strtok(sArr, ";");
-
-			int i =1;	
-
-			// For all tokens.
-			while(sPtr != NULL) 
-			{
-				if (i==1)
-					n_id = atoi(sPtr);
-				else if (i==2)
-					n_nom = sPtr;
-				else if (i==3)
-					n_nom_2 = sPtr;
-				else if (i==4)
-					n_octave = atoi(sPtr);
-				else if (i==5)
-					n_frequence = atof(sPtr);
-					
-				// Go to the next word.
-				sPtr = strtok(NULL, ";");
-
-				i++;
-			}
-			Notes.push_back(Note(n_id,n_nom,n_nom_2,n_octave,n_frequence,"", ""));
-			
-		}
-		f_notes.close();
-	}
-
-
+	setNotes();
 	
 	for(Note n : Notes) //parcours de la liste
 	{
@@ -75,7 +27,7 @@ int main()
 		cout<< " - "<<n.GetFrequence() << "\n";
 	}
 
-	/*Génération de la liste d'instruments à partir du csv*/
+	/*Génération de la liste d'instruments à partir du csv
 
 	ifstream f_instuments("Data/Instruments.csv"); 
 
@@ -125,7 +77,7 @@ int main()
 		f_instuments.close();
 	}
 
-	
+	*/
 
 		 for(Instrument i : Instruments)
 			 cout<< i.GetNom() << " - " << printf("%f",i.GetNote_haute()) << "-"<<printf("%f",i.GetNote_basse()) <<"\n";

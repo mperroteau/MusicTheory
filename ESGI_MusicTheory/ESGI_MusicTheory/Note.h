@@ -36,6 +36,7 @@ public:
 	void SetFrequence(float);
 	void SetImage(string);
 	void GetSong();
+	
 
 	bool IsSong(float);
 
@@ -47,6 +48,7 @@ public:
 	
 };
 
+static void setNotes();
 static list<Note> Notes;
 
 
