@@ -84,14 +84,6 @@ int main(int argc, char *argv[])
     /* 
         System initialization
     */
-    printf("---------------------------------------------------------\n");    
-    printf("Select OUTPUT type\n");    
-    printf("---------------------------------------------------------\n");    
-    printf("1 :  DirectSound\n");
-    printf("2 :  Windows Multimedia WaveOut\n");
-    printf("3 :  ASIO\n");
-    printf("---------------------------------------------------------\n");
-    printf("Press a corresponding number or ESC to quit\n");
 
     
     result = system->setOutput(FMOD_OUTPUTTYPE_DSOUND);
@@ -104,10 +96,7 @@ int main(int argc, char *argv[])
 
     result = system->getNumDrivers(&numdrivers);
     ERRCHECK(result);
-
-    printf("---------------------------------------------------------\n");    
-    printf("Choose a PLAYBACK driver\n");
-    printf("---------------------------------------------------------\n");    
+  
     for (count=0; count < numdrivers; count++)
     {
         char name[256];
@@ -117,8 +106,6 @@ int main(int argc, char *argv[])
 
         printf("%d : %s\n", count + 1, name);
     }
-    printf("---------------------------------------------------------\n");
-    printf("Press a corresponding number or ESC to quit\n");
 
     driver = 0;
 
@@ -130,11 +117,7 @@ int main(int argc, char *argv[])
     */
 
     result = system->getRecordNumDrivers(&numdrivers);
-    ERRCHECK(result);
-
-    printf("---------------------------------------------------------\n");    
-    printf("Choose a RECORD driver\n");
-    printf("---------------------------------------------------------\n");    
+    ERRCHECK(result);   
     for (count=0; count < numdrivers; count++)
     {
         char name[256];
@@ -144,8 +127,6 @@ int main(int argc, char *argv[])
 
         printf("%d : %s\n", count + 1, name);
     }
-    printf("---------------------------------------------------------\n");
-    printf("Press a corresponding number or ESC to quit\n");
 
     recorddriver = 0;
    /* do
@@ -183,15 +164,6 @@ int main(int argc, char *argv[])
     /*
         Start the interface
     */
-    printf("=========================================================================\n");
-    printf("Pitch detection example.  Copyright (c) Firelight Technologies 2004-2011.\n");
-    printf("=========================================================================\n");
-    printf("\n");
-    printf("Record something through the selected recording device and FMOD will\n");
-    printf("Determine the pitch.  Sustain the tone for at least a second to get an\n");
-    printf("accurate reading.\n");
-    printf("Press 'Esc' to quit\n");
-    printf("\n");
 
     result = system->recordStart(recorddriver, sound, true);
     ERRCHECK(result);

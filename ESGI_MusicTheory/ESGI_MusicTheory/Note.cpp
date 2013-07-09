@@ -20,20 +20,13 @@
 #include "Note.h"
 #include "Instrument.h"
 #include "Form_Main.h"
-
-
-#define OUTPUTRATE          48000
-#define SPECTRUMSIZE        8192
-#define SPECTRUMRANGE       ((float)OUTPUTRATE / 2.0f)      /* 0 to nyquist */
-
-#define BINSIZE      (SPECTRUMRANGE / (float)SPECTRUMSIZE)
-
+#include <conio.h>
 #include <math.h>
 
 
 
 
-#include "FMODEx\fmod.h"
+
 
 Note::Note()
 {
@@ -79,7 +72,8 @@ int Note::GetOctave()
 
 float Note::GetFrequence()
 {
-	return frequence;
+	float _frequence = frequence;
+	return _frequence;
 }
 
 string Note::GetImage()
@@ -245,9 +239,61 @@ Note Note::getNoteByFrequence(float _frequence)
 
 Note Note::getNoteById(int _id)
 {
+	ifstream f_notes("Data/Notes.csv"); 
+	string value;
+	list<Note> _Notes;
+
+	if (f_notes)
+	{
+		int n_id = NULL;
+		string n_nom = "";
+		string n_nom_2 = "";
+		int n_octave = NULL;
+		float n_frequence = NULL;
+		
+		while ( getline( f_notes, value ) )
+		{
+			char *sArr = new char[value.length()+1];
+			strcpy(sArr, value.c_str());
+			// Declare char pointer sPtr for the tokens.
+			char *sPtr;
+			// Get all the tokens with " " as delimiter.
+			sPtr = strtok(sArr, ";");
+
+			int i =1;	
+
+			// For all tokens.
+			while(sPtr != NULL) 
+			{
+				if (i==1)
+					n_id = atoi(sPtr);
+				else if (i==2)
+					n_nom = sPtr;
+				else if (i==3)
+					n_nom_2 = sPtr;
+				else if (i==4)
+					n_octave = atoi(sPtr);
+				else if (i==5)
+					n_frequence = atof(sPtr);
+					
+				// Go to the next word.
+				sPtr = strtok(NULL, ";");
+
+				i++;
+			}
+			Notes.push_back(Note(n_id,n_nom,n_nom_2,n_octave,n_frequence,"", ""));
+			
+		}
+		f_notes.close();
+	}
+	//cout << "_id : " <<_id;
+	int current_id;
+	int arg_id = _id;
 	for (Note n : Notes)
 	{
-		if (_id == n.GetId())
+		//cout << "_id : " <<_id;
+		current_id = n.id;
+		if (arg_id == current_id)
 			return n;
 	}
 }
@@ -326,6 +372,12 @@ void ERRCHECK(FMOD_RESULT result)
 //        
 //}
 
+#define OUTPUTRATE          48000
+#define SPECTRUMSIZE        8192
+#define SPECTRUMRANGE       ((float)OUTPUTRATE / 2.0f)      /* 0 to nyquist */
+
+#define BINSIZE      (SPECTRUMRANGE / (float)SPECTRUMSIZE)
+
 float Note::Listen()
 {
 	FMOD::System          *system  = 0;
@@ -336,9 +388,54 @@ float Note::Listen()
     int                    key, driver, recorddriver, numdrivers, count, bin;
     unsigned int           version;    
 
-    /*
-        Create a System object and initialize.
-    */
+	ifstream f_notes("Data/Notes.csv"); 
+	string value;
+	list<Note> _Notes;
+
+	if (f_notes)
+	{
+		int n_id = NULL;
+		string n_nom = "";
+		string n_nom_2 = "";
+		int n_octave = NULL;
+		float n_frequence = NULL;
+		
+		while ( getline( f_notes, value ) )
+		{
+			char *sArr = new char[value.length()+1];
+			strcpy(sArr, value.c_str());
+			// Declare char pointer sPtr for the tokens.
+			char *sPtr;
+			// Get all the tokens with " " as delimiter.
+			sPtr = strtok(sArr, ";");
+
+			int i =1;	
+
+			// For all tokens.
+			while(sPtr != NULL) 
+			{
+				if (i==1)
+					n_id = atoi(sPtr);
+				else if (i==2)
+					n_nom = sPtr;
+				else if (i==3)
+					n_nom_2 = sPtr;
+				else if (i==4)
+					n_octave = atoi(sPtr);
+				else if (i==5)
+					n_frequence = atof(sPtr);
+					
+				// Go to the next word.
+				sPtr = strtok(NULL, ";");
+
+				i++;
+			}
+			Notes.push_back(Note(n_id,n_nom,n_nom_2,n_octave,n_frequence,"", ""));
+			
+		}
+		f_notes.close();
+	}
+
     result = FMOD::System_Create(&system);
     ERRCHECK(result);
 
@@ -366,8 +463,7 @@ float Note::Listen()
 
     result = system->getNumDrivers(&numdrivers);
     ERRCHECK(result);
-
- 
+  
     for (count=0; count < numdrivers; count++)
     {
         char name[256];
@@ -377,7 +473,6 @@ float Note::Listen()
 
         printf("%d : %s\n", count + 1, name);
     }
-
 
     driver = 0;
 
@@ -389,9 +484,7 @@ float Note::Listen()
     */
 
     result = system->getRecordNumDrivers(&numdrivers);
-    ERRCHECK(result);
-
-  
+    ERRCHECK(result);   
     for (count=0; count < numdrivers; count++)
     {
         char name[256];
@@ -402,9 +495,8 @@ float Note::Listen()
         printf("%d : %s\n", count + 1, name);
     }
 
-
     recorddriver = 0;
-
+ 
 
     printf("\n");
  
@@ -428,6 +520,9 @@ float Note::Listen()
     result = system->createSound(0, FMOD_2D | FMOD_SOFTWARE | FMOD_LOOP_NORMAL | FMOD_OPENUSER, &exinfo, &sound);
     ERRCHECK(result);
 
+    /*
+        Start the interface
+    */
 
     result = system->recordStart(recorddriver, sound, true);
     ERRCHECK(result);
@@ -446,13 +541,19 @@ float Note::Listen()
     /*
         Main loop.
     */
+	
     do
     {
         static float spectrum[SPECTRUMSIZE];
         float        dominanthz = 0;
         float        max;
-        Note          dominantnote;
+        Note         dominantnote;
         float        binsize = BINSIZE;
+
+		if (_kbhit())
+        {
+            key = _getch();
+        }
 
         result = channel->getSpectrum(spectrum, SPECTRUMSIZE, 0, FMOD_DSP_FFT_WINDOW_TRIANGLE);
         ERRCHECK(result);
@@ -465,36 +566,64 @@ float Note::Listen()
             {
                 max = spectrum[count];
                 bin = count;
+				cout << "bin : " << bin;
             }
         }        
 
-        dominanthz  = (float)bin * BINSIZE;       /* dominant frequency min */
+        dominanthz  = (float)bin * BINSIZE;       /* dominant frequency min */	
+		
+		float current_frequence;
 
-		//for (list<Note>::iterator i(Notes.begin()); i != Notes.end(); i++)
-		//{
-		//	Note n_courant = *i;
-		//	//Note n_suivant = *i++;
-		//	if (dominanthz >= (n_courant.frequence - 50.0) && dominanthz < (n_courant.frequence + 50.0))
-		//	{
-		//		if (fabs(dominanthz - (n_courant.frequence - 50.0)) < fabs(dominanthz - (n_courant.frequence + 50.0)))
-		//			dominantnote = n_courant;
-		//		
-		//	}
-		//}
-		//
-		//if (this == &dominantnote)
-		//	return true;
-		//else 
-		//	return false;
+		for (Note n: Notes)
+		{
+			current_frequence = n.frequence;
+			if (dominanthz >= (current_frequence) && dominanthz < (current_frequence))
+			{
+				if (fabs(dominanthz - current_frequence)< fabs(dominanthz - current_frequence))
+				{
+					dominantnote = n;
+					//break;
+				}
+			}
+		}
+		
+		//printf("Detected rate : %7.1f", dominanthz);
+		//cout << "Frequence courante : " << dominanthz << "\n";
+
+		int this_note_id = this->id;
+		int dominantnote_id = this->id;
+
+		if (this_note_id == dominantnote_id)
+			return true;
+
+		printf("Detected rate : %7.1f -> %7.1f hz.  Detected musical note. %-3s (%7.1f hz)\r", dominanthz);
+
+
+		system->update();
+
+        Sleep(10);
 		
 		
-        //printf("Detected rate : %7.1f -> %7.1f hz.  Detected musical note. %-3s (%7.1f hz)\r", dominanthz, ((float)bin + 0.99f) * BINSIZE, note[dominantnote], notefreq[dominantnote]);
+		
 
         system->update();
 
         Sleep(10);
 
     } while (key != 27);
+
+	  printf("\n");
+
+    /*
+        Shut down
+    */
+    result = sound->release();
+    ERRCHECK(result);
+
+    result = system->release();
+    ERRCHECK(result);
+
+    return 0;
 	
 
 }

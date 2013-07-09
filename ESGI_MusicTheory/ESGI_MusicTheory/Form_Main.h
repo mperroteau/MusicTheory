@@ -1,6 +1,9 @@
 #pragma once
 #include "Form_Parametres.h"
 #include "Form_RandomTest.h"
+#include "Parametre.h"
+#include "Note.h"
+#include "Instrument.h"
 
 namespace ESGI_MusicTheory {
 
@@ -93,9 +96,17 @@ namespace ESGI_MusicTheory {
 
 		}
 #pragma endregion
+
+	public : 
+		void StartTest(int _nbNotes, Parametre &_parametres, Form_RandomTest^ form);
+
+
 private:System::Void BT_RandomTest_Click(System::Object^  sender, System::EventArgs^  e) {
 			Form_RandomTest^ form_rdt = gcnew Form_RandomTest();
 			form_rdt->Show();
+			Instrument *i = new Instrument("Default", "Default", 261.6,523.2);
+			Parametre *p = new Parametre(*i);
+			StartTest(5, *p, form_rdt);
 			
 	}
 	

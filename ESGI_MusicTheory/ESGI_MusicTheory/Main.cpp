@@ -19,7 +19,7 @@ int main()
 {
 	/*Génération de la liste de notes à partir du csv*/
 
-	setNotes();
+	//setNotes();
 	
 	for(Note n : Notes) //parcours de la liste
 	{

@@ -21,8 +21,15 @@ Class ESGI_MusicTheory.Form_Parametres: AutoLayout, AnsiClass, Class, Public, Be
 Class ESGI_MusicTheory.Form_RandomTest: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
-  Methods:
-    StartTest(Int32, Parametre* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+  Fields:
+    System.Windows.Forms.Label label1 : Public
+    System.Windows.Forms.Label frm_thisnote : Public
+    System.Windows.Forms.PictureBox frm_picturenote : Public
+    System.Windows.Forms.Label frm_frequencecourante : Public
+    System.Windows.Forms.Label frm_nbnotecourante : Public
+    System.Windows.Forms.Label frm_nbnotes : Public
 Class ESGI_MusicTheory.Form_Main: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    StartTest(Int32, Parametre* IsImplicitlyDereferenced, Form_RandomTest): PrivateScope, Public, HideBySig

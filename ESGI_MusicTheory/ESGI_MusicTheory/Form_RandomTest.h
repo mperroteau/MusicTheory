@@ -21,7 +21,7 @@ namespace ESGI_MusicTheory {
 	public ref class Form_RandomTest : public System::Windows::Forms::Form
 	{
 	public:
-
+		/*
 		void StartTest(int _nbNotes, Parametre &_parametres)
 		{
 			int random_note;
@@ -36,13 +36,9 @@ namespace ESGI_MusicTheory {
 			{
 				continu = false;
 				random_note = rand() % 97; 
-				Note currentNote;
+				Note currentNote = currentNote.getNoteById(random_note);
 				
-				for (Note n : Notes)
-					{
-						if (random_note == n.GetId())
-							currentNote = n;
-					}
+				
 				min_frequence = _parametres.getInstru().GetNote_basse();
 				max_frequence = _parametres.getInstru().GetNote_haute();
 
@@ -63,6 +59,7 @@ namespace ESGI_MusicTheory {
 				
 			}
 		}
+		*/
 		Form_RandomTest(void)
 		{
 			InitializeComponent();
@@ -70,9 +67,8 @@ namespace ESGI_MusicTheory {
 			//TODO: ajoutez ici le code du constructeur
 			
 			//
-			Instrument *i = new Instrument("Default", "Default", 261.6,523.2);
-			Parametre *p = new Parametre(*i);
-			StartTest(5, *p);
+			
+			//StartTest(5, *p);
 			
 
 		}
@@ -90,16 +86,16 @@ namespace ESGI_MusicTheory {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::Label^  label1;
-	private: System::Windows::Forms::Label^  frm_thisnote;
+	public: System::Windows::Forms::Label^  label1;
+	public: System::Windows::Forms::Label^  frm_thisnote;
 
-	private: System::Windows::Forms::PictureBox^  frm_picturenote;
-	private: System::Windows::Forms::Label^  frm_frequencecourante;
-	private: System::Windows::Forms::Label^  frm_nbnotecourante;
+	public: System::Windows::Forms::PictureBox^  frm_picturenote;
+	public: System::Windows::Forms::Label^  frm_frequencecourante;
+	public: System::Windows::Forms::Label^  frm_nbnotecourante;
 
 
 
-	private: System::Windows::Forms::Label^  frm_nbnotes;
+	public: System::Windows::Forms::Label^  frm_nbnotes;
 
 	protected: 
 
@@ -135,7 +131,7 @@ namespace ESGI_MusicTheory {
 			this->label1->Size = System::Drawing::Size(36, 13);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Note :";
-			this->label1->Click += gcnew System::EventHandler(this, &Form_RandomTest::label1_Click);
+			
 			// 
 			// frm_thisnote
 			// 
@@ -200,9 +196,5 @@ namespace ESGI_MusicTheory {
 
 		}
 #pragma endregion
-	private: System::Void label1_Click(System::Object^  sender, System::EventArgs^  e) {
-			 }
-
-			 //
 	};
 }
