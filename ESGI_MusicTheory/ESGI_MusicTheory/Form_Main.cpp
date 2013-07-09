@@ -39,7 +39,7 @@ void Form_Main::StartTest(int arg_nbNotes, Parametre &_parametres, Form_RandomTe
 
 				if (current_frequence >= min_frequence && current_frequence <= max_frequence)
 				{
-					cout << "\n" << "Test sur la note : " << currentNote.GetNom() << " - "<<currentNote.GetFrequence() << "\n";
+					cout << "\n" << "Test sur la note : " << currentNote.GetNom() << " " <<currentNote.GetOctave()<<  " - "<<currentNote.GetFrequence() << "\n";
 					cn_name = currentNote.GetNom();
 
 					form->frm_thisnote->Text = L"{0}", currentNote.GetNom();

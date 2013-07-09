@@ -82,6 +82,8 @@
     <None Include="ClassDiagram.cd" />
     <None Include="Data\Instruments.csv" />
     <None Include="Data\Notes.csv" />
+    <None Include="Data\Parametres.csv" />
+    <None Include="Data\Scores.csv" />
     <None Include="DLL\fmodex.dll" />
     <None Include="DLL\fmodex64.dll" />
     <None Include="DLL\fmodexL.dll" />
@@ -159,6 +161,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Form_Main.resx">
       <DependentUpon>Form_Main.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Parametres.resx">
+      <DependentUpon>Form_Parametres.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_RandomTest.resx">
       <DependentUpon>Form_RandomTest.h</DependentUpon>

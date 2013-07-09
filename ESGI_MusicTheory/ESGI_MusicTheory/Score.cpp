@@ -49,7 +49,7 @@ void Score::setScore(float _score)
 	score = _score;
 }
 
-//void Score::setLongueur_test(int _longueur_test);
-//{
-//	longueur_test = _longueur_test;
-//}
+void Score::setLongueur_test(int _longueur_test)
+{
+	longueur_test = _longueur_test;
+}

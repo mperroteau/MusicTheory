@@ -10,6 +10,7 @@ class Parametre
 private:
 	Instrument instru;
 	int niveau;
+	int nb_notes;
 
 public:
 	Parametre(void);
@@ -18,9 +19,11 @@ public:
 
 	Instrument getInstru(void);
 	int getNiveau(void);
+	int getNb_notes(void);
 
 	void setInstru(Instrument);
 	void setNiveau(int);
+	void setNb_notes(int);
 
 };
 

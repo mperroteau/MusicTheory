@@ -35,15 +35,9 @@ public:
 	void SetOctave(int);
 	void SetFrequence(float);
 	void SetImage(string);
-	void GetSong();
-	
 
-	bool IsSong(float);
-
-	Note getNoteByFrequence(float);
 	Note getNoteById(int);
 
-	float Play();
 	float Listen();
 	
 };

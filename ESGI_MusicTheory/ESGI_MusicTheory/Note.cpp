@@ -154,80 +154,6 @@ static void setNotes()
 	}
 }
 
-void Note::GetSong()
-{
-	//Joue la note courante
-}
-
-bool Note::IsSong(float _frequence)
-{
-	//TO DO : Appliquer une marge
-	if (frequence == _frequence)
-		return true;
-	else
-		return false;
-
-}
-
-Note Note::getNoteByFrequence(float _frequence)
-{
-	Note old;
-	Note best;
-	int i = 0;
-	float current_result_up = NULL;
-	float current_result_down = NULL;
-	float best_result = 100;
-
-	cout <<_frequence;
-
-	for (list<Note>::iterator n = Notes.begin(); n != Notes.end(); n++)
-	{
-		Note current = *n;
-
-		current_result_up = current.GetFrequence() - _frequence;
-		current_result_down = _frequence - current.GetFrequence();
-
-		if (n != Notes.begin())
-			current_result_down = _frequence - old.GetFrequence();
-
-		if (current_result_up < best_result)
-			best = current;
-		else if (current_result_down < best_result)
-			best = old;
-		
-		old = *n;
-
-	}
-
-	return best;
-	
-	for (Note n : Notes)
-	{   
-		/*cout << n.GetFrequence();
-		if (i < 1)
-		{	
-			if (_frequence == n.GetFrequence())
-				return n;
-		}
-		else 
-		{
-			if ((_frequence > old.GetFrequence() && _frequence < n.GetFrequence()) ||(_frequence < old.GetFrequence() && _frequence > n.GetFrequence()))
-			{ 
-				result_old = _frequence - old.GetFrequence();
-				result_n = n.GetFrequence() - _frequence;
-				if (result_old<result_n)
-					return old;
-				else 
-					return n;
-			}
-		}*/
-		
-
-		
-
-	}
-
-}
 
 Note Note::getNoteById(int _id)
 {
@@ -300,74 +226,11 @@ void ERRCHECK(FMOD_RESULT result)
     }
 }
 
-//float Note::Play()
-//{
-//	FMOD::System    *system;
-//    FMOD::Channel   *channel = 0;
-//    FMOD::DSP       *dsp = 0;
-//    FMOD_RESULT      result;
-//    int              key = 0;
-//    unsigned int     version;
-//
-//	  /*
-//        Create a System object and initialize.
-//    */
-//    result = FMOD::System_Create(&system);
-//    ERRCHECK(result);
-//
-//    result = system->getVersion(&version);
-//    ERRCHECK(result);
-//
-//    if (version < FMOD_VERSION)
-//    {
-//        printf("Error!  You are using an old version of FMOD %08x.  This program requires %08x\n", version, FMOD_VERSION);
-//        return 0;
-//    }
-//
-//    result = system->init(32, FMOD_INIT_NORMAL, NULL);
-//    ERRCHECK(result);
-//
-//    /*
-//        Create an oscillator DSP units for the tone.
-//    */
-//    result = system->createDSPByType(FMOD_DSP_TYPE_OSCILLATOR, &dsp);
-//    ERRCHECK(result);
-//	//result = dsp->setParameter(FMOD_DSP_OSCILLATOR_RATE, 440.0f);       /* musical note 'A' */
-//	result = dsp->setParameter(FMOD_DSP_OSCILLATOR_RATE, frequence);  /*Note courante */
-//    ERRCHECK(result);
-//
-//	/*Frequence*/
-//
-//
-//	 system->update();
-//
-//	  
-//			float frequency = frequence, volume = 0, pan = 0;
-//			result = system->playDSP(FMOD_CHANNEL_REUSE, dsp, true, &channel);
-//            channel->setVolume(0.9f);
-//            result = dsp->setParameter(FMOD_DSP_OSCILLATOR_TYPE, 0);
-//            ERRCHECK(result);
-//            channel->setPaused(false);
-//
-//            bool playing = true;
-//			 
-//          
-//            if (channel)
-//            {
-//                channel->getFrequency(&frequency);
-//                channel->getVolume(&volume);
-//                channel->getPan(&pan);
-//                channel->isPlaying(&playing);
-//            }
-//
-//    //printf("Channel %s : Frequency %.1f Volume %.1f Pan %.1f  \r", playing ? "playing" : "stopped", frequency, volume, pan);
-//        
-//}
+
 
 #define OUTPUTRATE          48000
 #define SPECTRUMSIZE        8192
-#define SPECTRUMRANGE       ((float)OUTPUTRATE / 2.0f)      /* 0 to nyquist */
-
+#define SPECTRUMRANGE       ((float)OUTPUTRATE / 2.0f)     
 #define BINSIZE      (SPECTRUMRANGE / (float)SPECTRUMSIZE)
 
 float Note::Listen()
@@ -396,9 +259,7 @@ float Note::Listen()
 		{
 			char *sArr = new char[value.length()+1];
 			strcpy(sArr, value.c_str());
-			// Declare char pointer sPtr for the tokens.
 			char *sPtr;
-			// Get all the tokens with " " as delimiter.
 			sPtr = strtok(sArr, ";");
 
 			int i =1;	
@@ -440,18 +301,10 @@ float Note::Listen()
         return 0;
     }
 
-    /* 
-        System initialization
-    */
-
     
     result = system->setOutput(FMOD_OUTPUTTYPE_DSOUND);
   
     ERRCHECK(result);
-    
-    /*
-        Enumerate playback devices
-    */
 
     result = system->getNumDrivers(&numdrivers);
     ERRCHECK(result);
@@ -470,10 +323,6 @@ float Note::Listen()
 
     result = system->setDriver(driver);
     ERRCHECK(result);
-
-    /*
-        Enumerate record devices
-    */
 
     result = system->getRecordNumDrivers(&numdrivers);
     ERRCHECK(result);   
@@ -498,9 +347,6 @@ float Note::Listen()
     result = system->init(32, FMOD_INIT_NORMAL, 0);
     ERRCHECK(result);
 
-    /*
-        Create a sound to record to.
-    */
     memset(&exinfo, 0, sizeof(FMOD_CREATESOUNDEXINFO));
 
     exinfo.cbsize           = sizeof(FMOD_CREATESOUNDEXINFO);
@@ -512,19 +358,14 @@ float Note::Listen()
     result = system->createSound(0, FMOD_2D | FMOD_SOFTWARE | FMOD_LOOP_NORMAL | FMOD_OPENUSER, &exinfo, &sound);
     ERRCHECK(result);
 
-    /*
-        Start the interface
-    */
-
     result = system->recordStart(recorddriver, sound, true);
     ERRCHECK(result);
     
-    Sleep(200);      /* Give it some time to record something */
+    Sleep(200);      
     
     result = system->playSound(FMOD_CHANNEL_REUSE, sound, false, &channel);
     ERRCHECK(result);
 
-    /* Dont hear what is being recorded otherwise it will feedback.  Spectrum analysis is done before volume scaling in the DSP chain */
     result = channel->setVolume(0);
     ERRCHECK(result);
 
@@ -558,36 +399,29 @@ float Note::Listen()
             {
                 max = spectrum[count];
                 bin = count;
-				//cout << "bin : " << bin;
             }
         }        
 
-        dominanthz  = (float)bin * BINSIZE;       /* dominant frequency min */	
+        dominanthz  = (float)bin * BINSIZE;      
 		
 		float current_frequence;
 
 		for (Note n: Notes)
 		{
 			current_frequence = n.frequence;
-			if (dominanthz <= (current_frequence+10) && dominanthz >= (current_frequence-10) )
+			if (dominanthz <= (current_frequence+0.99) && dominanthz >= (current_frequence-0.99) )
 			{
 					dominantnote = n;
 					break;
 			}
 			
 		}
-		
-		//printf("Detected rate : %7.1f", dominanthz);
-		//cout << "Frequence courante : " << dominanthz << "\n";
 
 		int this_note_id = this->id;
 		int dominantnote_id = dominantnote.id;
 
 		if (this_note_id == dominantnote_id)
 			return true;
-
-		printf("Detected rate : %7.1f \n", dominanthz);
-
 
 		system->update();
 
@@ -603,10 +437,6 @@ float Note::Listen()
     } while (key != 27);
 
 	  printf("\n");
-
-    /*
-        Shut down
-    */
     result = sound->release();
     ERRCHECK(result);
 

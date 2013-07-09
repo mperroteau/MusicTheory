@@ -40,6 +40,12 @@
       <Filter>DLL</Filter>
     </None>
     <None Include="ClassDiagram.cd" />
+    <None Include="Data\Parametres.csv">
+      <Filter>Fichiers de ressources</Filter>
+    </None>
+    <None Include="Data\Scores.csv">
+      <Filter>Fichiers de ressources</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Note.h">
