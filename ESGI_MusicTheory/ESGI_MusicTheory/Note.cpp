@@ -1,31 +1,23 @@
-#include "Note.h"
 #include "Form_RandomTest.h"
-#include <stdio.h>
-#include <iostream>
-#include "fmod.hpp"
-#include "fmod_errors.h"
-#include <iostream>
-#include <Windows.h>
-#include <fmod.h>
-#include <stdlib.h>
-#include <list>
-
-#include <stdio.h>
-#include <string>
-#include <tchar.h>
-#include <iostream>
-#include <assert.h>
-#include <Windows.h>
-#include <fstream>
 #include "Note.h"
 #include "Instrument.h"
 #include "Form_Main.h"
+#include "Note.h"
+#include "fmod.hpp"
+#include "fmod_errors.h"
+
+#include <fmod.h>
+#include <stdio.h>
+#include <iostream>
+#include <Windows.h>
+#include <stdlib.h>
+#include <list>
+#include <string>
+#include <tchar.h>
+#include <assert.h>
+#include <fstream>
 #include <conio.h>
 #include <math.h>
-
-
-
-
 
 
 Note::Note()
@@ -566,7 +558,7 @@ float Note::Listen()
             {
                 max = spectrum[count];
                 bin = count;
-				cout << "bin : " << bin;
+				//cout << "bin : " << bin;
             }
         }        
 
@@ -577,26 +569,24 @@ float Note::Listen()
 		for (Note n: Notes)
 		{
 			current_frequence = n.frequence;
-			if (dominanthz >= (current_frequence) && dominanthz < (current_frequence))
+			if (dominanthz <= (current_frequence+10) && dominanthz >= (current_frequence-10) )
 			{
-				if (fabs(dominanthz - current_frequence)< fabs(dominanthz - current_frequence))
-				{
 					dominantnote = n;
-					//break;
-				}
+					break;
 			}
+			
 		}
 		
 		//printf("Detected rate : %7.1f", dominanthz);
 		//cout << "Frequence courante : " << dominanthz << "\n";
 
 		int this_note_id = this->id;
-		int dominantnote_id = this->id;
+		int dominantnote_id = dominantnote.id;
 
 		if (this_note_id == dominantnote_id)
 			return true;
 
-		printf("Detected rate : %7.1f -> %7.1f hz.  Detected musical note. %-3s (%7.1f hz)\r", dominanthz);
+		printf("Detected rate : %7.1f \n", dominanthz);
 
 
 		system->update();
