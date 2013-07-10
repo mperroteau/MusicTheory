@@ -98,15 +98,15 @@ namespace ESGI_MusicTheory {
 #pragma endregion
 
 	public : 
-		void StartTest(int _nbNotes, Parametre &_parametres, Form_RandomTest^ form);
+		void StartTest(int _nbNotes, Parametre &_parametres);
 
 
 private:System::Void BT_RandomTest_Click(System::Object^  sender, System::EventArgs^  e) {
-			Form_RandomTest^ form_rdt = gcnew Form_RandomTest();
-			form_rdt->Show();
+			//Form_RandomTest^ form_rdt = gcnew Form_RandomTest();
+			//form_rdt->Show();
 			Instrument *i = new Instrument("Default", "Default", 261.6,523.2);
 			Parametre *p = new Parametre(*i);
-			StartTest(5, *p, form_rdt);
+			StartTest(5, *p);
 			
 	}
 	
