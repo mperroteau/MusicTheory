@@ -14,6 +14,7 @@ private:
 
 public:
 	Parametre(void);
+	Parametre(Instrument&, int, int);
 	Parametre(Instrument);
 	~Parametre(void);
 

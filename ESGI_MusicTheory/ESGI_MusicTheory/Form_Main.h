@@ -99,20 +99,156 @@ namespace ESGI_MusicTheory {
 
 	public : 
 		void StartTest(int _nbNotes, Parametre &_parametres);
+		void StartParametres();
 
 
 private:System::Void BT_RandomTest_Click(System::Object^  sender, System::EventArgs^  e) {
 			//Form_RandomTest^ form_rdt = gcnew Form_RandomTest();
 			//form_rdt->Show();
 			Instrument *i = new Instrument("Default", "Default", 261.6,523.2);
+			
 			Parametre *p = new Parametre(*i);
+
+	//		string fichier_instrument;
+	//	ifstream f_parametres("Data/Parametres.csv"); 
+	//	string value;
+
+	//	if (f_parametres)
+	//	{
+	//		string p_nom = "";
+	//		int p_level;
+	//		int p_nbnotes;
+
+	//	
+	//		while ( getline( f_parametres, value ) )
+	//		{
+	//			char *sArr = new char[value.length()+1];
+	//			strcpy(sArr, value.c_str());
+	//			// Déclare un pointeur char
+	//			char *sPtr;
+	//			// Donne le delimiter
+	//			sPtr = strtok(sArr, ";");
+
+	//			int i =1;	
+ //
+	//			// Pour toute chaine entre ;
+	//			while(sPtr != NULL) 
+	//			{
+	//				if (i==1)
+	//					p_nom = sPtr;
+	//				else if (i==2)
+	//					p_level = atoi(sPtr);
+	//				else if (i==3)
+	//					p_nbnotes = atoi(sPtr);
+	//			
+	//				
+	//				// Aller jusqu'au prochain mot
+	//				sPtr = strtok(NULL, ";");
+
+	//				i++;
+	//			}			
+	//		
+	//		
+	//	}
+	//		string fichier_instrument;
+	//ifstream f_instuments("Data/Instruments.csv"); 
+	//string value;
+	//list<Instrument> _Instruments;
+
+	//	if (f_instuments)
+	//	{
+	//		string i_nom = "";
+	//		string i_type = "";
+	//		float i_note_basse = NULL;
+	//		float i_note_haute = NULL;
+	//	
+	//		while ( getline( f_instuments, value ) )
+	//		{
+	//			char *sArr = new char[value.length()+1];
+	//			strcpy(sArr, value.c_str());
+	//			// Declare char pointer sPtr for the tokens.
+	//			char *sPtr;
+	//			// Get all the tokens with " " as delimiter.
+	//			sPtr = strtok(sArr, ";");
+
+	//			int i =1;	
+ //
+	//			// For all tokens.
+	//			while(sPtr != NULL) 
+	//			{
+	//				if (i==1)
+	//					i_nom = sPtr;
+	//				else if (i==2)
+	//					i_type = sPtr;
+	//				else if (i==3)
+	//					i_note_basse = atof(sPtr);
+	//				else if (i==4)
+	//					i_note_haute = atof(sPtr);
+
+	//				
+	//				// Go to the next word.
+	//				sPtr = strtok(NULL, ";");
+
+	//				i++;
+	//			}
+	//			//Note *notecourante = new Note(n_id,n_nom,n_nom_2,n_octave,n_frequence,"", ""); //Le dernier champs étant l'image -> TO DO
+
+	//			_Instruments.push_back(Instrument(i_nom,i_type,i_note_basse,i_note_haute));
+	//		
+	//		
+	//	}
+	//		
+
+	//		f_instuments.close();
+	//	}
+	//	//Instrument inst_param;
+	//	Parametre *p=new Parametre();
+	//	for (Instrument i : _Instruments)
+	//	{
+	//		if (i.GetNom() == "p_nom")
+	//			p = new Parametre(i,p_level,p_nbnotes);
+
+	//	}
+	//	f_parametres.close();
 			StartTest(5, *p);
+
+			
+		
+		
+			
 			
 	}
 	
 	private: System::Void BT_Parametres_Click(System::Object^  sender, System::EventArgs^  e) {
-			Form_Parametres^ form_p = gcnew Form_Parametres();
-			form_p->Show();
+			//Form_Parametres^ form_p = gcnew Form_Parametres();
+			//form_p->Show();
+				 StartParametres();
+
+
+		//ofstream fichier("Parametres.csv", ios::out | ios::trunc);  // ouverture en écriture avec effacement du fichier ouvert
+  //
+  //      if(fichier)
+  //      {
+		//	fichier.clear;
+			//int Index = comboBox_instument->SelectedIndex;
+			/*Object^ selectedInstrument = comboBox_instument->SelectedItem;
+		   			
+			Object^ selectedNiveau = comboBox_level->SelectedItem;
+			Object^ nb_notes = textBox_nb_elements->Text;
+			
+			System::String^ instrument = selectedInstrument->ToString();
+			System::String^ niveau = comboBox_level->ToString();
+			System::String^ nb_notes = nb_notes->ToString();
+
+			string instru = instrument;
+			fichier << &instrument << ";"<< &niveau << ";"<<&nb_notes;*/
+       /* }
+        else
+                cerr << "Impossible d'ouvrir le fichier !" << endl;
+      
+		 }
+
+			 }*/
 			 }
 	};
 }

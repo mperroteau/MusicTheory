@@ -9,6 +9,9 @@
 #include <fstream>
 #include "Note.h"
 #include "Instrument.h"
+#include <fstream>
+#include <sstream>
+
 #pragma once
 
 namespace ESGI_MusicTheory {
@@ -96,6 +99,10 @@ namespace ESGI_MusicTheory {
 				comboBox_instument->Items->Add("Trompette");
 				comboBox_instument->Items->Add("Trombone");
 				comboBox_instument->Items->Add("Tuba");
+
+				comboBox_level->Items->Add("1");
+				comboBox_level->Items->Add("2");
+
 
 
 			//
@@ -216,6 +223,7 @@ namespace ESGI_MusicTheory {
 			this->bttn_save_parametres->TabIndex = 6;
 			this->bttn_save_parametres->Text = L"Save";
 			this->bttn_save_parametres->UseVisualStyleBackColor = true;
+			this->bttn_save_parametres->Click += gcnew System::EventHandler(this, &Form_Parametres::bttn_save_parametres_Click);
 			// 
 			// Form_Parametres
 			// 
@@ -238,5 +246,9 @@ namespace ESGI_MusicTheory {
 #pragma endregion
 	private: System::Void textBox1_TextChanged(System::Object^  sender, System::EventArgs^  e) {
 			 }
+private: System::Void bttn_save_parametres_Click(System::Object^  sender, System::EventArgs^  e) {
+
+			// StartParametres();
+		 }
 };
 }

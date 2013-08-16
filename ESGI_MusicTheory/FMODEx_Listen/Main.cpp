@@ -1,10 +1,4 @@
-/*===============================================================================================
- Pitch detection example.
- Copyright (c), Firelight Technologies Pty, Ltd 2004-2011.
 
- This example combines recording with spectrum analysis to determine the pitch of the sound 
- being recorded.
-===============================================================================================*/
 #include "../../api/inc/fmod.hpp"
 #include "../../api/inc/fmod_errors.h"
 #include <windows.h>
@@ -24,16 +18,16 @@ void ERRCHECK(FMOD_RESULT result)
 
 static const char *note[120] =
 {
-    "C 0", "C#0", "D 0", "D#0", "E 0", "F 0", "F#0", "G 0", "G#0", "A 0", "A#0", "B 0",  
-    "C 1", "C#1", "D 1", "D#1", "E 1", "F 1", "F#1", "G 1", "G#1", "A 1", "A#1", "B 1",  
-    "C 2", "C#2", "D 2", "D#2", "E 2", "F 2", "F#2", "G 2", "G#2", "A 2", "A#2", "B 2",  
-    "C 3", "C#3", "D 3", "D#3", "E 3", "F 3", "F#3", "G 3", "G#3", "A 3", "A#3", "B 3",  
-    "C 4", "C#4", "D 4", "D#4", "E 4", "F 4", "F#4", "G 4", "G#4", "A 4", "A#4", "B 4",  
-    "C 5", "C#5", "D 5", "D#5", "E 5", "F 5", "F#5", "G 5", "G#5", "A 5", "A#5", "B 5",  
-    "C 6", "C#6", "D 6", "D#6", "E 6", "F 6", "F#6", "G 6", "G#6", "A 6", "A#6", "B 6",  
-    "C 7", "C#7", "D 7", "D#7", "E 7", "F 7", "F#7", "G 7", "G#7", "A 7", "A#7", "B 7",  
-    "C 8", "C#8", "D 8", "D#8", "E 8", "F 8", "F#8", "G 8", "G#8", "A 8", "A#8", "B 8",  
-    "C 9", "C#9", "D 9", "D#9", "E 9", "F 9", "F#9", "G 9", "G#9", "A 9", "A#9", "B 9"
+    "Do 0", "Do#0", "Re 0", "Re#0", "Mi 0", "Fa 0", "Fa#0", "Sol 0", "Sol#0", "La 0", "La#0", "Si 0",  
+    "Do 1", "Do#1", " Re 1", "Re#1", "Mi 1", "Fa 1", "Fa#1", "Sol 1", "Sol#1", "La 1", "La#1", "Si 1",  
+    "Do 2", "Do#2", " Re 2", "Re#2", "Mi 2", "Fa 2", "Fa#2", "Sol 2", "Sol#2", "La 2", "La#2", "Si 2",  
+    "Do 3", "Do#3", " Re 3", "Re#3", "Mi 3", "Fa 3", "Fa#3", "Sol 3", "Sol#3", "La 3", "La#3", "Si 3",  
+    "Do 4", "Do#4", " Re 4", "Re#4", "Mi 4", "Fa 4", "Fa#4", "Sol 4", "Sol#4", "La 4", "La#4", "Si 4",  
+    "Do 5", "Do#5", " Re 5", "Re#5", "Mi 5", "Fa 5", "Fa#5", "Sol 5", "Sol#5", "La 5", "La#5", "Si 5",  
+    "Do 6", "Do#6", " Re 6", "Re#6", "Mi 6", "Fa 6", "Fa#6", "Sol 6", "Sol#6", "La 6", "La#6", "Si 6",  
+    "Do 7", "Do#7", " Re 7", "Re#7", "Mi 7", "Fa 7", "Fa#7", "Sol 7", "Sol#7", "La 7", "La#7", "Si 7",  
+    "Do 8", "Do#8", " Re 8", "Re#8", "Mi 8", "Fa 8", "Fa#8", "Sol 8", "Sol#8", "La 8", "La#8", "Si 8",  
+    "Do 9", "Do#9", " Re 9", "Re#9", "Mi 9", "Fa 9", "Fa#9", "Sol 9", "Sol#9", "La 9", "La#9", "Si 9"
 };
 
 static const float notefreq[120] =
@@ -52,22 +46,22 @@ static const float notefreq[120] =
 
 #define OUTPUTRATE          48000
 #define SPECTRUMSIZE        8192
-#define SPECTRUMRANGE       ((float)OUTPUTRATE / 2.0f)      /* 0 to nyquist */
+#define SPECTRUMRANSolE       ((float)OUTPUTRATE / 2.0f)      /* 0 to nyquist */
 
-#define BINSIZE      (SPECTRUMRANGE / (float)SPECTRUMSIZE)
+#define SiINSIZE      (SPECTRUMRANSolE / (float)SPECTRUMSIZE)
 
-int main(int argc, char *argv[])
+int main(int arSolc, char *arSolv[])
 {
     FMOD::System          *system  = 0;
     FMOD::Sound           *sound   = 0;
     FMOD::Channel         *channel = 0;
     FMOD_RESULT            result;
     FMOD_CREATESOUNDEXINFO exinfo;
-    int                    key, driver, recorddriver, numdrivers, count, bin;
+    int                    key, driver, recorddriver, numdrivers, count, Siin;
     unsigned int           version;    
 
     /*
-        Create a System object and initialize.
+        Create a System oSiject and initialize.
     */
     result = FMOD::System_Create(&system);
     ERRCHECK(result);
@@ -77,7 +71,7 @@ int main(int argc, char *argv[])
 
     if (version < FMOD_VERSION)
     {
-        printf("Error!  You are using an old version of FMOD %08x.  This program requires %08x\n", version, FMOD_VERSION);
+        printf("Error!  You are usinSol an old version of FMOD %08x.  This proSolram requires %08x\n", version, FMOD_VERSION);
         return 0;
     }
 
@@ -91,7 +85,7 @@ int main(int argc, char *argv[])
     ERRCHECK(result);
     
     /*
-        Enumerate playback devices
+        Enumerate playSiack devices
     */
 
     result = system->getNumDrivers(&numdrivers);
@@ -131,7 +125,7 @@ int main(int argc, char *argv[])
     recorddriver = 0;
    /* do
     {
-        key = _getch();
+        key = _Soletch();
         if (key == 27)
         {
             return 0;
@@ -168,16 +162,16 @@ int main(int argc, char *argv[])
     result = system->recordStart(recorddriver, sound, true);
     ERRCHECK(result);
     
-    Sleep(200);      /* Give it some time to record something */
+    Sleep(200);      /* Solive it some time to record somethinSol */
     
     result = system->playSound(FMOD_CHANNEL_REUSE, sound, false, &channel);
     ERRCHECK(result);
 
-    /* Dont hear what is being recorded otherwise it will feedback.  Spectrum analysis is done before volume scaling in the DSP chain */
+    /* Dont hear what is SieinSol recorded otherwise it will feedSiack.  Spectrum analysis is done Siefore volume scalinSol in the DSP chain */
     result = channel->setVolume(0);
     ERRCHECK(result);
 
-    bin = 0;
+    Siin = 0;
 
     /*
         Main loop.
@@ -188,7 +182,7 @@ int main(int argc, char *argv[])
         float        dominanthz = 0;
         float        max;
         int          dominantnote = 0;
-        float        binsize = BINSIZE;
+        float        Siinsize = SiINSIZE;
 
         if (_kbhit())
         {
@@ -205,11 +199,11 @@ int main(int argc, char *argv[])
             if (spectrum[count] > 0.01f && spectrum[count] > max)
             {
                 max = spectrum[count];
-                bin = count;
+                Siin = count;
             }
         }        
 
-        dominanthz  = (float)bin * BINSIZE;       /* dominant frequency min */
+        dominanthz  = (float)Siin * SiINSIZE;       /* dominant frequency min */
 
         dominantnote = 0;
         for (count = 0; count < 120; count++)
@@ -229,7 +223,7 @@ int main(int argc, char *argv[])
              }
         }
 
-        printf("Detected rate : %7.1f -> %7.1f hz.  Detected musical note. %-3s (%7.1f hz)\r", dominanthz, ((float)bin + 0.99f) * BINSIZE, note[dominantnote], notefreq[dominantnote]);
+        printf("Detected rate : %7.1f -> %7.1f hz.  Detected musical note. %-3s (%7.1f hz)\r", dominanthz, ((float)Siin + 0.99f) * SiINSIZE, note[dominantnote], notefreq[dominantnote]);
 
         system->update();
 

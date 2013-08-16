@@ -10,6 +10,14 @@ Parametre::Parametre(Instrument _instru)
 	instru = _instru;
 }
 
+Parametre::Parametre(Instrument &i, int lvl, int nb)
+{
+	instru = i;
+	niveau = lvl;
+	nb_notes = nb;
+}
+
+
 Parametre::~Parametre (void)
 {
 

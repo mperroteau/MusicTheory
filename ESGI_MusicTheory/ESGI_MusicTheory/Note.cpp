@@ -316,7 +316,6 @@ float Note::Listen()
         result = system->getDriverInfo(count, name, 256, 0);
         ERRCHECK(result);
 
-        printf("%d : %s\n", count + 1, name);
     }
 
     driver = 0;
@@ -333,7 +332,7 @@ float Note::Listen()
         result = system->getRecordDriverInfo(count, name, 256, 0);
         ERRCHECK(result);
 
-        printf("%d : %s\n", count + 1, name);
+       
     }
 
     recorddriver = 0;
@@ -409,7 +408,7 @@ float Note::Listen()
 		for (Note n: Notes)
 		{
 			current_frequence = n.frequence;
-			if (dominanthz <= (current_frequence+0.99) && dominanthz >= (current_frequence-0.99) )
+			if (dominanthz <= (current_frequence+10) && dominanthz >= (current_frequence-10) )
 			{
 					dominantnote = n;
 					break;

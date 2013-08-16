@@ -1,4 +1,5 @@
   ESGI_MusicTheory.Form_Main.resources - Embedded, ContainedInManifestFile, 
+  ESGI_MusicTheory.Form_Parametres.resources - Embedded, ContainedInManifestFile, 
   ESGI_MusicTheory.Form_RandomTest.resources - Embedded, ContainedInManifestFile, 
 ImageRuntimeVersion: v4.0.30319
 Assembly ESGI_MusicTheory, Version=0.0.*, Culture=Langue indifférente (Pays indifférent): 
@@ -32,4 +33,5 @@ Class ESGI_MusicTheory.Form_Main: AutoLayout, AnsiClass, Class, Public, BeforeFi
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Methods:
-    StartTest(Int32, Parametre* IsImplicitlyDereferenced, Form_RandomTest): PrivateScope, Public, HideBySig
+    StartTest(Int32, Parametre* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
+    StartParametres(): PrivateScope, Public, HideBySig
