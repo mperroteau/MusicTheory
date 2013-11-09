@@ -1,5 +1,4 @@
 #include "Form_Main.h"
-#include "Form_Parametres.h"
 #include "Note.h"
 #include "Instrument.h"
 #include "Parametre.h"
@@ -16,9 +15,17 @@
 #include <conio.h>
 #include <math.h>
 
+#include "msclr\marshal_cppstd.h"
+
+
 using namespace ESGI_MusicTheory;
 using namespace System::Windows::Forms;
 using namespace std;
+
+//void Form_Main::setCurrentFrequence(float current)
+//{
+//	this->frm_frequencecourante->Text = current.ToString();
+//}
 
 void Form_Main::StartTest(int arg_nbNotes, Parametre &_parametres)
 		{
@@ -29,6 +36,12 @@ void Form_Main::StartTest(int arg_nbNotes, Parametre &_parametres)
 			float max_frequence;
 			bool continu;
 			int _nbNotes = arg_nbNotes;
+
+
+			this->l_Note->Text = "Note : ";
+			this->l_Note->Refresh();
+			this->frm_nbnotes->Text = "/ "+ _nbNotes.ToString();
+			this->frm_nbnotes->Refresh();
 
 			while (nbcurrentnote <= _nbNotes)
 			{
@@ -49,6 +62,18 @@ void Form_Main::StartTest(int arg_nbNotes, Parametre &_parametres)
 
 				if (current_frequence >= min_frequence && current_frequence <= max_frequence)
 				{
+					
+					this->frm_nbnotecourante->Text = (nbcurrentnote+1).ToString();
+					this->frm_nbnotecourante->Refresh();
+					//Convertit un string "normal" afin de pouvoir l'afficher dans le label
+					this->frm_thisnote->Text = gcnew String(currentNote.GetNom().c_str());
+					this->frm_thisnote->Refresh();
+
+					//timer
+					/*
+					System::Threading::TimerCallback^ tcb = gcnew System::Threading::TimerCallback(
+					Timer^ stateTimer = gcnew Timer(tcb, autoEvent, 1000, 250);*/
+
 					cout << "\n" << "Test sur la note : " << currentNote.GetNom() << " " <<currentNote.GetOctave()<<  " - "<<currentNote.GetFrequence() << "\n";
 					cn_name = currentNote.GetNom();
 
@@ -56,8 +81,14 @@ void Form_Main::StartTest(int arg_nbNotes, Parametre &_parametres)
 					
 					while (continu == false)
 					{
-						continu = currentNote.Listen();
+						//Faire le random dans le while et n'utiliser le listen que pour lire dans le micro
+						//Faire toutes les vérifications ici afin de povoir
+						//continu = currentNote.Listen();
+						currentNote.Listen();
+						
 					}
+
+					/*si timer faire en fonction du timer*/
 					cout << "OK \n";
 					nbcurrentnote ++;
 					
@@ -84,6 +115,7 @@ void Form_Main::StartParametres()
 			{
 				char *sArr = new char[value.length()+1];
 				strcpy(sArr, value.c_str());
+				
 				// Declare char pointer sPtr for the tokens.
 				char *sPtr;
 				// Get all the tokens with " " as delimiter.
@@ -99,9 +131,9 @@ void Form_Main::StartParametres()
 					else if (i==2)
 						i_type = sPtr;
 					else if (i==3)
-						i_note_basse = atof(sPtr);
+						i_note_basse = static_cast<float>(atof(sPtr));
 					else if (i==4)
-						i_note_haute = atof(sPtr);
+						i_note_haute = static_cast<float>(atof(sPtr));
 
 					
 					// Go to the next word.
@@ -167,7 +199,6 @@ void Form_Main::StartParametres()
 }
 
 System::Void BT_RandomTest_Click(System::Object^  sender, System::EventArgs^  e) {
-	Application::Run(gcnew Form_Parametres);
 	//Application::Run(gcnew Form_Parametres);
 			 }
 

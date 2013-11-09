@@ -1,4 +1,5 @@
 #include "Form_RandomTest.h"
+#include "Form_Main.h"
 #include "Note.h"
 #include "Instrument.h"
 #include "Form_Main.h"
@@ -140,7 +141,7 @@ static void setNotes()
 				else if (i==4)
 					n_octave = atoi(sPtr);
 				else if (i==5)
-					n_frequence = atof(sPtr);
+					n_frequence = static_cast<float>(atof(sPtr));
 					
 				// Go to the next word.
 				sPtr = strtok(NULL, ";");
@@ -192,7 +193,7 @@ Note Note::getNoteById(int _id)
 				else if (i==4)
 					n_octave = atoi(sPtr);
 				else if (i==5)
-					n_frequence = atof(sPtr);
+					n_frequence = static_cast<float>(atof(sPtr));
 					
 				// Go to the next word.
 				sPtr = strtok(NULL, ";");
@@ -276,7 +277,7 @@ float Note::Listen()
 				else if (i==4)
 					n_octave = atoi(sPtr);
 				else if (i==5)
-					n_frequence = atof(sPtr);
+					n_frequence = static_cast<float>(atof(sPtr));
 					
 				// Go to the next word.
 				sPtr = strtok(NULL, ";");
@@ -401,7 +402,14 @@ float Note::Listen()
             }
         }        
 
-        dominanthz  = (float)bin * BINSIZE;      
+        dominanthz  = (float)bin * BINSIZE; 
+
+		ESGI_MusicTheory::Form_Main^ _form = gcnew ESGI_MusicTheory::Form_Main;
+		//_form->setCurrentFrequence(dominanthz);
+		//_form->setCurrentFrequence(dominanthz.ToString());
+		_form->frm_frequencecourante->Text = dominanthz.ToString();
+		_form->frm_frequencecourante->Refresh();
+
 		
 		float current_frequence;
 
@@ -415,7 +423,7 @@ float Note::Listen()
 			}
 			
 		}
-
+		 printf("Frequence detectee : %7.1f\r", dominanthz);
 		int this_note_id = this->id;
 		int dominantnote_id = dominantnote.id;
 
@@ -446,6 +454,9 @@ float Note::Listen()
 	
 
 }
+
+
+
 
 	
 

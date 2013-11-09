@@ -127,25 +127,25 @@ namespace ESGI_MusicTheory {
 			// 
 			this->label1->AutoSize = true;
 			this->label1->Location = System::Drawing::Point(47, 50);
-			this->label1->Name = L"label1";
+			this->label1->Name = "label1";
 			this->label1->Size = System::Drawing::Size(36, 13);
 			this->label1->TabIndex = 0;
-			this->label1->Text = L"Note :";
+			this->label1->Text = "Note :";
 			
 			// 
 			// frm_thisnote
 			// 
 			this->frm_thisnote->AutoSize = true;
 			this->frm_thisnote->Location = System::Drawing::Point(106, 50);
-			this->frm_thisnote->Name = L"frm_thisnote";
+			this->frm_thisnote->Name = "frm_thisnote";
 			this->frm_thisnote->Size = System::Drawing::Size(90, 13);
 			this->frm_thisnote->TabIndex = 1;
-			this->frm_thisnote->Text = L"frm_notecourante";
+			this->frm_thisnote->Text = "frm_notecourante";
 			// 
 			// frm_picturenote
 			// 
 			this->frm_picturenote->Location = System::Drawing::Point(109, 81);
-			this->frm_picturenote->Name = L"frm_picturenote";
+			this->frm_picturenote->Name = "frm_picturenote";
 			this->frm_picturenote->Size = System::Drawing::Size(100, 50);
 			this->frm_picturenote->TabIndex = 2;
 			this->frm_picturenote->TabStop = false;
@@ -154,28 +154,28 @@ namespace ESGI_MusicTheory {
 			// 
 			this->frm_frequencecourante->AutoSize = true;
 			this->frm_frequencecourante->Location = System::Drawing::Point(269, 50);
-			this->frm_frequencecourante->Name = L"frm_frequencecourante";
+			this->frm_frequencecourante->Name = "frm_frequencecourante";
 			this->frm_frequencecourante->Size = System::Drawing::Size(120, 13);
 			this->frm_frequencecourante->TabIndex = 3;
-			this->frm_frequencecourante->Text = L"frm_frequence courante";
+			this->frm_frequencecourante->Text = "frm_frequence courante";
 			// 
 			// frm_nbnotecourante
 			// 
 			this->frm_nbnotecourante->AutoSize = true;
 			this->frm_nbnotecourante->Location = System::Drawing::Point(50, 193);
-			this->frm_nbnotecourante->Name = L"frm_nbnotecourante";
+			this->frm_nbnotecourante->Name = "frm_nbnotecourante";
 			this->frm_nbnotecourante->Size = System::Drawing::Size(102, 13);
 			this->frm_nbnotecourante->TabIndex = 4;
-			this->frm_nbnotecourante->Text = L"frm_nbnotecourante";
+			this->frm_nbnotecourante->Text = "frm_nbnotecourante";
 			// 
 			// frm_nbnotes
 			// 
 			this->frm_nbnotes->AutoSize = true;
 			this->frm_nbnotes->Location = System::Drawing::Point(92, 193);
-			this->frm_nbnotes->Name = L"frm_nbnotes";
+			this->frm_nbnotes->Name = "frm_nbnotes";
 			this->frm_nbnotes->Size = System::Drawing::Size(65, 13);
 			this->frm_nbnotes->TabIndex = 5;
-			this->frm_nbnotes->Text = L"frm_nbnotes";
+			this->frm_nbnotes->Text = "frm_nbnotes";
 			// 
 			// Form_RandomTest
 			// 
@@ -196,5 +196,10 @@ namespace ESGI_MusicTheory {
 
 		}
 #pragma endregion
+		/*public :
+			void StartTest(int _nbNotes, Parametre &_parametres);
+			void StartParametres();
+
+			private:System::*/
 	};
 }
