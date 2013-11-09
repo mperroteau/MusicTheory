@@ -65,6 +65,9 @@ void Form_Main::StartTest(int arg_nbNotes, Parametre &_parametres)
 					
 					this->frm_nbnotecourante->Text = (nbcurrentnote+1).ToString();
 					this->frm_nbnotecourante->Refresh();
+
+					String^ _imagepath = gcnew String(currentNote.GetImage().c_str());
+					this->frm_picturenote->Load(_imagepath);
 					//Convertit un string "normal" afin de pouvoir l'afficher dans le label
 					this->frm_thisnote->Text = gcnew String(currentNote.GetNom().c_str());
 					this->frm_thisnote->Refresh();
@@ -134,6 +137,7 @@ void Form_Main::StartParametres()
 						i_note_basse = static_cast<float>(atof(sPtr));
 					else if (i==4)
 						i_note_haute = static_cast<float>(atof(sPtr));
+
 
 					
 					// Go to the next word.

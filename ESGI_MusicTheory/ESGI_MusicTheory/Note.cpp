@@ -169,6 +169,7 @@ Note Note::getNoteById(int _id)
 		string n_nom_2 = "";
 		int n_octave = NULL;
 		float n_frequence = NULL;
+		string n_image = "";
 		
 		while ( getline( f_notes, value ) )
 		{
@@ -194,13 +195,15 @@ Note Note::getNoteById(int _id)
 					n_octave = atoi(sPtr);
 				else if (i==5)
 					n_frequence = static_cast<float>(atof(sPtr));
+				else if (i==6)
+					n_image = sPtr;
 					
 				// Go to the next word.
 				sPtr = strtok(NULL, ";");
 
 				i++;
 			}
-			Notes.push_back(Note(n_id,n_nom,n_nom_2,n_octave,n_frequence,"", ""));
+			Notes.push_back(Note(n_id,n_nom,n_nom_2,n_octave,n_frequence,n_image, ""));
 			
 		}
 		f_notes.close();
@@ -255,6 +258,7 @@ float Note::Listen()
 		string n_nom_2 = "";
 		int n_octave = NULL;
 		float n_frequence = NULL;
+		string n_image = "";
 		
 		while ( getline( f_notes, value ) )
 		{
@@ -278,13 +282,16 @@ float Note::Listen()
 					n_octave = atoi(sPtr);
 				else if (i==5)
 					n_frequence = static_cast<float>(atof(sPtr));
+				//path image
+				else if (i==6)
+					n_image = sPtr;
 					
 				// Go to the next word.
 				sPtr = strtok(NULL, ";");
 
 				i++;
 			}
-			Notes.push_back(Note(n_id,n_nom,n_nom_2,n_octave,n_frequence,"", ""));
+			Notes.push_back(Note(n_id,n_nom,n_nom_2,n_octave,n_frequence,n_image, ""));
 			
 		}
 		f_notes.close();
