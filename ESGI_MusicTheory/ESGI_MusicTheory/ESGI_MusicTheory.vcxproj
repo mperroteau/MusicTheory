@@ -147,6 +147,36 @@
       <DependentUpon>Form_RandomTest.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="Notes\3do.PNG" />
+    <Image Include="Notes\3dod.PNG" />
+    <Image Include="Notes\3fa.PNG" />
+    <Image Include="Notes\3fad.PNG" />
+    <Image Include="Notes\3la.PNG" />
+    <Image Include="Notes\3lad.PNG" />
+    <Image Include="Notes\3mi.PNG" />
+    <Image Include="Notes\3re.PNG" />
+    <Image Include="Notes\3red.PNG" />
+    <Image Include="Notes\3si.PNG" />
+    <Image Include="Notes\3sol.PNG" />
+    <Image Include="Notes\3sold.PNG" />
+    <Image Include="Notes\4do.PNG" />
+    <Image Include="Notes\4dod.PNG" />
+    <Image Include="Notes\4fa.PNG" />
+    <Image Include="Notes\4fad.PNG" />
+    <Image Include="Notes\4la.PNG" />
+    <Image Include="Notes\4lad.PNG" />
+    <Image Include="Notes\4mi.PNG" />
+    <Image Include="Notes\4re.PNG" />
+    <Image Include="Notes\4red.PNG" />
+    <Image Include="Notes\4si.PNG" />
+    <Image Include="Notes\4sol.PNG" />
+    <Image Include="Notes\4sold.PNG" />
+    <Image Include="Notes\5do.PNG" />
+    <Image Include="Notes\5dod.PNG" />
+    <Image Include="Notes\5re.PNG" />
+    <Image Include="Notes\5red.PNG" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

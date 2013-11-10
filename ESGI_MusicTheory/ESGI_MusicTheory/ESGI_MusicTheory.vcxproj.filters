@@ -19,6 +19,9 @@
     <Filter Include="DLL">
       <UniqueIdentifier>{42c9f53a-0406-4606-8375-a60d28e8c673}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers de ressources\Notes">
+      <UniqueIdentifier>{7ff8b87e-a04e-4765-a26c-56b2771a0541}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\Instruments.csv">
@@ -118,8 +121,91 @@
     <EmbeddedResource Include="Form_RandomTest.resx">
       <Filter>Fichiers de ressources</Filter>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form_Parametres.resx">
-      <Filter>Fichiers de ressources</Filter>
-    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Notes\3do.PNG">
+      <Filter>Fichiers de ressources\Notes</Filter>
+    </Image>
+    <Image Include="Notes\3dod.PNG">
+      <Filter>Fichiers de ressources\Notes</Filter>
+    </Image>
+    <Image Include="Notes\3fa.PNG">
+      <Filter>Fichiers de ressources\Notes</Filter>
+    </Image>
+    <Image Include="Notes\3fad.PNG">
+      <Filter>Fichiers de ressources\Notes</Filter>
+    </Image>
+    <Image Include="Notes\3la.PNG">
+      <Filter>Fichiers de ressources\Notes</Filter>
+    </Image>
+    <Image Include="Notes\3lad.PNG">
+      <Filter>Fichiers de ressources\Notes</Filter>
+    </Image>
+    <Image Include="Notes\3mi.PNG">
+      <Filter>Fichiers de ressources\Notes</Filter>
+    </Image>
+    <Image Include="Notes\3re.PNG">
+      <Filter>Fichiers de ressources\Notes</Filter>
+    </Image>
+    <Image Include="Notes\3red.PNG">
+      <Filter>Fichiers de ressources\Notes</Filter>
+    </Image>
+    <Image Include="Notes\3si.PNG">
+      <Filter>Fichiers de ressources\Notes</Filter>
+    </Image>
+    <Image Include="Notes\3sol.PNG">
+      <Filter>Fichiers de ressources\Notes</Filter>
+    </Image>
+    <Image Include="Notes\3sold.PNG">
+      <Filter>Fichiers de ressources\Notes</Filter>
+    </Image>
+    <Image Include="Notes\4do.PNG">
+      <Filter>Fichiers de ressources\Notes</Filter>
+    </Image>
+    <Image Include="Notes\4dod.PNG">
+      <Filter>Fichiers de ressources\Notes</Filter>
+    </Image>
+    <Image Include="Notes\4fa.PNG">
+      <Filter>Fichiers de ressources\Notes</Filter>
+    </Image>
+    <Image Include="Notes\4fad.PNG">
+      <Filter>Fichiers de ressources\Notes</Filter>
+    </Image>
+    <Image Include="Notes\4la.PNG">
+      <Filter>Fichiers de ressources\Notes</Filter>
+    </Image>
+    <Image Include="Notes\4lad.PNG">
+      <Filter>Fichiers de ressources\Notes</Filter>
+    </Image>
+    <Image Include="Notes\4mi.PNG">
+      <Filter>Fichiers de ressources\Notes</Filter>
+    </Image>
+    <Image Include="Notes\4re.PNG">
+      <Filter>Fichiers de ressources\Notes</Filter>
+    </Image>
+    <Image Include="Notes\4red.PNG">
+      <Filter>Fichiers de ressources\Notes</Filter>
+    </Image>
+    <Image Include="Notes\4si.PNG">
+      <Filter>Fichiers de ressources\Notes</Filter>
+    </Image>
+    <Image Include="Notes\4sol.PNG">
+      <Filter>Fichiers de ressources\Notes</Filter>
+    </Image>
+    <Image Include="Notes\4sold.PNG">
+      <Filter>Fichiers de ressources\Notes</Filter>
+    </Image>
+    <Image Include="Notes\5do.PNG">
+      <Filter>Fichiers de ressources\Notes</Filter>
+    </Image>
+    <Image Include="Notes\5dod.PNG">
+      <Filter>Fichiers de ressources\Notes</Filter>
+    </Image>
+    <Image Include="Notes\5re.PNG">
+      <Filter>Fichiers de ressources\Notes</Filter>
+    </Image>
+    <Image Include="Notes\5red.PNG">
+      <Filter>Fichiers de ressources\Notes</Filter>
+    </Image>
   </ItemGroup>
 </Project>
