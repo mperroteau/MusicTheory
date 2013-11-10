@@ -14,6 +14,8 @@
 #include <fstream>
 #include <conio.h>
 #include <math.h>
+#include <ctime>
+
 
 #include "msclr\marshal_cppstd.h"
 
@@ -27,6 +29,14 @@ using namespace std;
 //	this->frm_frequencecourante->Text = current.ToString();
 //}
 
+double diffclock( clock_t clock1, clock_t clock2 ) {
+
+        double diffticks = clock1 - clock2;
+        double diffms    = diffticks / ( CLOCKS_PER_SEC / 1000 );
+
+        return diffms;
+    }
+
 void Form_Main::StartTest(int arg_nbNotes, Parametre &_parametres)
 		{
 			int random_note;
@@ -36,7 +46,10 @@ void Form_Main::StartTest(int arg_nbNotes, Parametre &_parametres)
 			float max_frequence;
 			bool continu;
 			int _nbNotes = arg_nbNotes;
+			int goodnotes = 0;
 
+			//Ajout d'un timer
+			clock_t start = clock();
 
 			this->l_Note->Text = "Note : ";
 			this->l_Note->Refresh();
@@ -94,15 +107,37 @@ void Form_Main::StartTest(int arg_nbNotes, Parametre &_parametres)
 					cn_name = currentNote.GetNom();
 
 					
+					//if timer
+
 					
-					while (continu == false)
+
+					while (true)
 					{
-						//Faire le random dans le while et n'utiliser le listen que pour lire dans le micro
-						//Faire toutes les vérifications ici afin de povoir
-						//continu = currentNote.Listen();
-						continu = currentNote.Listen();
-						
+						//x1000
+						if (tb_spernote->Text == "")
+						{
+							continu = currentNote.Listen();
+						}
+						else 
+						{
+							double sn = Convert::ToDouble(tb_spernote->Text);
+							sn = sn*1000;
+							continu = currentNote.Listen(sn);
+						}
+
+						if (continu == true)
+							goodnotes++;
+						break;
 					}
+
+					//while (continu == false)
+					//{
+					//	//Faire le random dans le while et n'utiliser le listen que pour lire dans le micro
+					//	//Faire toutes les vérifications ici afin de povoir
+					//	//continu = currentNote.Listen();
+					//	continu = currentNote.Listen();
+					//	
+					//}
 
 					/*si timer faire en fonction du timer*/
 					cout << "OK \n";
@@ -112,9 +147,11 @@ void Form_Main::StartTest(int arg_nbNotes, Parametre &_parametres)
 				
 			}
 
+			clock_t end = clock();
+
 			this->frm_nbnotecourante->Text = (nbcurrentnote).ToString();
 			this->frm_nbnotecourante->Refresh();
-			this->status->Text = "Test terminé";
+			this->status->Text = "Test terminé, nombre de bonnes notes : " + goodnotes.ToString() + " / " + _nbNotes.ToString();
 			this->status->Refresh();
 
 		}

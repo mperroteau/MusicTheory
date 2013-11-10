@@ -39,6 +39,7 @@ public:
 	Note getNoteById(int);
 
 	bool Listen();
+	bool Listen(double);
 	
 };
 

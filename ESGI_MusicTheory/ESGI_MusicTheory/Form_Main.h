@@ -74,6 +74,8 @@ namespace ESGI_MusicTheory {
 
 	private: System::Windows::Forms::Label^  label2;
 	private: System::Windows::Forms::Label^  status;
+	private: System::Windows::Forms::TextBox^  tb_spernote;
+	private: System::Windows::Forms::Label^  label3;
 
 	private: System::ComponentModel::IContainer^  components;
 
@@ -110,6 +112,8 @@ namespace ESGI_MusicTheory {
 			this->par_nbnotes = (gcnew System::Windows::Forms::TextBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->status = (gcnew System::Windows::Forms::Label());
+			this->tb_spernote = (gcnew System::Windows::Forms::TextBox());
+			this->label3 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->frm_picturenote))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -119,7 +123,7 @@ namespace ESGI_MusicTheory {
 			this->BT_RandomTest->Name = L"BT_RandomTest";
 			this->BT_RandomTest->Size = System::Drawing::Size(123, 38);
 			this->BT_RandomTest->TabIndex = 0;
-			this->BT_RandomTest->Text = L"Random Quizz";
+			this->BT_RandomTest->Text = L"Lancer le test";
 			this->BT_RandomTest->UseVisualStyleBackColor = true;
 			this->BT_RandomTest->Click += gcnew System::EventHandler(this, &Form_Main::BT_RandomTest_Click);
 			// 
@@ -187,7 +191,8 @@ namespace ESGI_MusicTheory {
 			this->instrumentSelector->Items->AddRange(gcnew cli::array< System::Object^  >(14) {L"Default", L"Piccolo", L"Grande Flute", 
 				L"Flute Alto", L"Haubois", L"Cor Anglais", L"Clarinette", L"Clarinette basse", L"Basson", L"Contrebasson", L"Cor", L"Trompette", 
 				L"Trombone", L"Tuba"});
-			this->instrumentSelector->Location = System::Drawing::Point(53, 142);
+			this->instrumentSelector->SelectedIndex = 0;
+			this->instrumentSelector->Location = System::Drawing::Point(53, 137);
 			this->instrumentSelector->Name = L"instrumentSelector";
 			this->instrumentSelector->Size = System::Drawing::Size(121, 21);
 			this->instrumentSelector->TabIndex = 13;
@@ -205,15 +210,16 @@ namespace ESGI_MusicTheory {
 			// 
 			// par_nbnotes
 			// 
-			this->par_nbnotes->Location = System::Drawing::Point(53, 206);
+			this->par_nbnotes->Location = System::Drawing::Point(53, 188);
 			this->par_nbnotes->Name = L"par_nbnotes";
+			this->par_nbnotes->Text = "10";
 			this->par_nbnotes->Size = System::Drawing::Size(100, 20);
 			this->par_nbnotes->TabIndex = 15;
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(53, 181);
+			this->label2->Location = System::Drawing::Point(50, 172);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(88, 13);
 			this->label2->TabIndex = 16;
@@ -229,11 +235,30 @@ namespace ESGI_MusicTheory {
 			this->status->TabIndex = 17;
 			this->status->Click += gcnew System::EventHandler(this, &Form_Main::label3_Click);
 			// 
+			// tb_spernote
+			// 
+			this->tb_spernote->Location = System::Drawing::Point(53, 240);
+			this->tb_spernote->Name = L"tb_spernote";
+			this->tb_spernote->Text = "5";
+			this->tb_spernote->Size = System::Drawing::Size(100, 20);
+			this->tb_spernote->TabIndex = 18;
+			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->Location = System::Drawing::Point(53, 224);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(89, 13);
+			this->label3->TabIndex = 19;
+			this->label3->Text = L"Secondes / Note";
+			// 
 			// Form_Main
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(528, 321);
+			this->Controls->Add(this->label3);
+			this->Controls->Add(this->tb_spernote);
 			this->Controls->Add(this->status);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->par_nbnotes);
