@@ -164,7 +164,7 @@ namespace ESGI_MusicTheory {
 			this->frm_picturenote->ImageLocation = L"";
 			this->frm_picturenote->Location = System::Drawing::Point(244, 96);
 			this->frm_picturenote->Name = L"frm_picturenote";
-			this->frm_picturenote->Size = System::Drawing::Size(164, 89);
+			this->frm_picturenote->Size = System::Drawing::Size(164, 98);
 			this->frm_picturenote->TabIndex = 8;
 			this->frm_picturenote->TabStop = false;
 			this->frm_picturenote->Click += gcnew System::EventHandler(this, &Form_Main::frm_picturenote_Click);
@@ -212,9 +212,9 @@ namespace ESGI_MusicTheory {
 			// 
 			this->par_nbnotes->Location = System::Drawing::Point(53, 188);
 			this->par_nbnotes->Name = L"par_nbnotes";
-			this->par_nbnotes->Text = "10";
 			this->par_nbnotes->Size = System::Drawing::Size(100, 20);
 			this->par_nbnotes->TabIndex = 15;
+			this->par_nbnotes->Text = L"10";
 			// 
 			// label2
 			// 
@@ -229,7 +229,7 @@ namespace ESGI_MusicTheory {
 			// status
 			// 
 			this->status->AutoSize = true;
-			this->status->Location = System::Drawing::Point(246, 273);
+			this->status->Location = System::Drawing::Point(249, 243);
 			this->status->Name = L"status";
 			this->status->Size = System::Drawing::Size(0, 13);
 			this->status->TabIndex = 17;
@@ -239,9 +239,9 @@ namespace ESGI_MusicTheory {
 			// 
 			this->tb_spernote->Location = System::Drawing::Point(53, 240);
 			this->tb_spernote->Name = L"tb_spernote";
-			this->tb_spernote->Text = "5";
 			this->tb_spernote->Size = System::Drawing::Size(100, 20);
 			this->tb_spernote->TabIndex = 18;
+			this->tb_spernote->Text = L"5";
 			// 
 			// label3
 			// 
