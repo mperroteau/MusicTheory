@@ -158,9 +158,9 @@ namespace ESGI_MusicTheory {
 			// frm_picturenote
 			// 
 			this->frm_picturenote->ImageLocation = L"";
-			this->frm_picturenote->Location = System::Drawing::Point(308, 96);
+			this->frm_picturenote->Location = System::Drawing::Point(244, 96);
 			this->frm_picturenote->Name = L"frm_picturenote";
-			this->frm_picturenote->Size = System::Drawing::Size(100, 50);
+			this->frm_picturenote->Size = System::Drawing::Size(164, 89);
 			this->frm_picturenote->TabIndex = 8;
 			this->frm_picturenote->TabStop = false;
 			this->frm_picturenote->Click += gcnew System::EventHandler(this, &Form_Main::frm_picturenote_Click);

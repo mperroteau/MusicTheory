@@ -34,34 +34,34 @@
 35;La; ;2;220
 36;La #;Si b;2;233.08
 37;Si; ;2;246.94
-38;Do; ;3;261.63
-39;Do #;Re b;3;277.18
-40;Re; ;3;293.66
-41;Re #;Mi b;3;311.13;Notes\41.png
-42;Mi; ;3;329.63
-43;Fa; ;3;349.23
-44;Fa #;Sol b;3;369.99
-45;Sol; ;3;392
-46;Sol # ;La b;3;415.3
-47;La; ;3;440
-48;La #;Si b;3;466.16
-49;Si; ;3;493.88
-50;Do; ;4;523.25
-51;Do #;Re b;4;554.37
-52;Re; ;4;587.33
-53;Re #;Mi b;4;622.25
-54;Mi; ;4;659.26
-55;Fa; ;4;698.46
-56;Fa #;Sol b;4;739.99
-57;Sol; ;4;783.99
-58;Sol # ;La b;4;830.61
-59;La; ;4;880
-60;La #;Si b;4;932.33
-61;Si; ;4;987.77
-62;Do; ;5;1046.50
-63;Do #;Re b;5;1108.73
-64;Re; ;5;1174.66
-65;Re #;Mi b;5;1244.51
+38;Do; ;3;261.63;Notes\3do.png
+39;Do #;Re b;3;277.18;Notes\3red.png
+40;Re; ;3;293.66;Notes\3re.png
+41;Re #;Mi b;3;311.13;Notes\3red.png
+42;Mi; ;3;329.63;Notes\3mi.png
+43;Fa; ;3;349.23;Notes\3fa.png
+44;Fa #;Sol b;3;369.99;Notes\3fad.png
+45;Sol; ;3;392;Notes\3sol.png
+46;Sol # ;La b;3;415.3;Notes\3sold.png
+47;La; ;3;440;Notes\3la.png
+48;La #;Si b;3;466.16;Notes\3lad.png
+49;Si; ;3;493.88;Notes\3si.png
+50;Do; ;4;523.25;Notes\4do.png
+51;Do #;Re b;4;554.37;Notes\4dod.png
+52;Re; ;4;587.33;Notes\4re.png
+53;Re #;Mi b;4;622.25;Notes\4red.png
+54;Mi; ;4;659.26;Notes\4mi.png
+55;Fa; ;4;698.46;Notes\4fa.png
+56;Fa #;Sol b;4;739.99;Notes\4fad.png
+57;Sol; ;4;783.99;Notes\4sol.png
+58;Sol # ;La b;4;830.61;Notes\4sold.png
+59;La; ;4;880;Notes\4la.png
+60;La #;Si b;4;932.33;Notes\4lad.png
+61;Si; ;4;987.77;Notes\4si.png
+62;Do; ;5;1046.50;Notes\5do.png
+63;Do #;Re b;5;1108.73;Notes\5dod.png
+64;Re; ;5;1174.66;Notes\5re.png
+65;Re #;Mi b;5;1244.51;Notes\5red.png
 66;Mi; ;5;1318.51
 67;Fa; ;5;1396.91
 68;Fa #;Sol b;5;1479.98

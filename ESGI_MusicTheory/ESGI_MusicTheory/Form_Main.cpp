@@ -46,7 +46,7 @@ void Form_Main::StartTest(int arg_nbNotes, Parametre &_parametres)
 			this->status->Text = "";
 			this->status->Refresh();
 
-			while (nbcurrentnote <= _nbNotes)
+			while (nbcurrentnote < _nbNotes)
 			{
 				continu = false;
 				random_note = rand() % 97; 
