@@ -43,6 +43,9 @@ void Form_Main::StartTest(int arg_nbNotes, Parametre &_parametres)
 			this->frm_nbnotes->Text = "/ "+ _nbNotes.ToString();
 			this->frm_nbnotes->Refresh();
 
+			this->status->Text = "";
+			this->status->Refresh();
+
 			while (nbcurrentnote <= _nbNotes)
 			{
 				continu = false;
@@ -67,7 +70,17 @@ void Form_Main::StartTest(int arg_nbNotes, Parametre &_parametres)
 					this->frm_nbnotecourante->Refresh();
 
 					String^ _imagepath = gcnew String(currentNote.GetImage().c_str());
-					this->frm_picturenote->Load(_imagepath);
+					//this->frm_picturenote->Load(_imagepath);
+					if (_imagepath == "")
+					{
+						this->frm_picturenote->Image = nullptr;
+						this->frm_picturenote->Refresh();
+					}
+					else
+					{
+						this->frm_picturenote->Image = Image::FromFile(_imagepath);
+						this->frm_picturenote->Refresh();
+					}
 					//Convertit un string "normal" afin de pouvoir l'afficher dans le label
 					this->frm_thisnote->Text = gcnew String(currentNote.GetNom().c_str());
 					this->frm_thisnote->Refresh();
@@ -87,7 +100,7 @@ void Form_Main::StartTest(int arg_nbNotes, Parametre &_parametres)
 						//Faire le random dans le while et n'utiliser le listen que pour lire dans le micro
 						//Faire toutes les vérifications ici afin de povoir
 						//continu = currentNote.Listen();
-						currentNote.Listen();
+						continu = currentNote.Listen();
 						
 					}
 
@@ -98,6 +111,12 @@ void Form_Main::StartTest(int arg_nbNotes, Parametre &_parametres)
 				}
 				
 			}
+
+			this->frm_nbnotecourante->Text = (nbcurrentnote).ToString();
+			this->frm_nbnotecourante->Refresh();
+			this->status->Text = "Test terminé";
+			this->status->Refresh();
+
 		}
 
 void Form_Main::StartParametres()

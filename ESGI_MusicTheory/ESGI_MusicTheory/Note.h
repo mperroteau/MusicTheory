@@ -38,7 +38,7 @@ public:
 
 	Note getNoteById(int);
 
-	float Listen();
+	bool Listen();
 	
 };
 

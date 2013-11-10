@@ -62,7 +62,7 @@ namespace ESGI_MusicTheory {
 	public: System::Windows::Forms::PictureBox^  frm_picturenote;
 	public: System::Windows::Forms::Label^  frm_thisnote;
 	public: System::Windows::Forms::Label^  l_Note;
-	private: System::Windows::Forms::ProgressBar^  pb_timer;
+
 	public: 
 
 	public: 
@@ -73,6 +73,8 @@ namespace ESGI_MusicTheory {
 	private: System::Windows::Forms::TextBox^  par_nbnotes;
 
 	private: System::Windows::Forms::Label^  label2;
+	private: System::Windows::Forms::Label^  status;
+
 	private: System::ComponentModel::IContainer^  components;
 
 
@@ -102,12 +104,12 @@ namespace ESGI_MusicTheory {
 			this->frm_picturenote = (gcnew System::Windows::Forms::PictureBox());
 			this->frm_thisnote = (gcnew System::Windows::Forms::Label());
 			this->l_Note = (gcnew System::Windows::Forms::Label());
-			this->pb_timer = (gcnew System::Windows::Forms::ProgressBar());
 			this->toolTip1 = (gcnew System::Windows::Forms::ToolTip(this->components));
 			this->instrumentSelector = (gcnew System::Windows::Forms::ComboBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->par_nbnotes = (gcnew System::Windows::Forms::TextBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->status = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^  >(this->frm_picturenote))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -155,6 +157,7 @@ namespace ESGI_MusicTheory {
 			// 
 			// frm_picturenote
 			// 
+			this->frm_picturenote->ImageLocation = L"";
 			this->frm_picturenote->Location = System::Drawing::Point(308, 96);
 			this->frm_picturenote->Name = L"frm_picturenote";
 			this->frm_picturenote->Size = System::Drawing::Size(100, 50);
@@ -178,19 +181,12 @@ namespace ESGI_MusicTheory {
 			this->l_Note->Size = System::Drawing::Size(0, 13);
 			this->l_Note->TabIndex = 6;
 			// 
-			// pb_timer
-			// 
-			this->pb_timer->Location = System::Drawing::Point(331, 198);
-			this->pb_timer->Name = L"pb_timer";
-			this->pb_timer->Size = System::Drawing::Size(100, 23);
-			this->pb_timer->TabIndex = 12;
-			// 
 			// instrumentSelector
 			// 
 			this->instrumentSelector->FormattingEnabled = true;
 			this->instrumentSelector->Items->AddRange(gcnew cli::array< System::Object^  >(14) {L"Default", L"Piccolo", L"Grande Flute", 
-				L"Flute", L"Haubois", L"Cor Anglais", L"Clarinette", L"Clarinette basse", L"Basson", L"Contrebasson", L"Cor", L"Trompette", L"Trombone", 
-				L"Tuba"});
+				L"Flute Alto", L"Haubois", L"Cor Anglais", L"Clarinette", L"Clarinette basse", L"Basson", L"Contrebasson", L"Cor", L"Trompette", 
+				L"Trombone", L"Tuba"});
 			this->instrumentSelector->Location = System::Drawing::Point(53, 142);
 			this->instrumentSelector->Name = L"instrumentSelector";
 			this->instrumentSelector->Size = System::Drawing::Size(121, 21);
@@ -224,16 +220,25 @@ namespace ESGI_MusicTheory {
 			this->label2->Text = L"Nombre de notes";
 			this->label2->Click += gcnew System::EventHandler(this, &Form_Main::label2_Click);
 			// 
+			// status
+			// 
+			this->status->AutoSize = true;
+			this->status->Location = System::Drawing::Point(246, 273);
+			this->status->Name = L"status";
+			this->status->Size = System::Drawing::Size(0, 13);
+			this->status->TabIndex = 17;
+			this->status->Click += gcnew System::EventHandler(this, &Form_Main::label3_Click);
+			// 
 			// Form_Main
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(660, 310);
+			this->ClientSize = System::Drawing::Size(528, 321);
+			this->Controls->Add(this->status);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->par_nbnotes);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->instrumentSelector);
-			this->Controls->Add(this->pb_timer);
 			this->Controls->Add(this->frm_nbnotes);
 			this->Controls->Add(this->frm_nbnotecourante);
 			this->Controls->Add(this->frm_frequencecourante);
@@ -459,6 +464,8 @@ private: System::Void instrumentSelector_SelectedIndexChanged(System::Object^  s
 private: System::Void label2_Click(System::Object^  sender, System::EventArgs^  e) {
 		 }
 private: System::Void frm_picturenote_Click(System::Object^  sender, System::EventArgs^  e) {
+		 }
+private: System::Void label3_Click(System::Object^  sender, System::EventArgs^  e) {
 		 }
 };
 }

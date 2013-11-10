@@ -237,7 +237,7 @@ void ERRCHECK(FMOD_RESULT result)
 #define SPECTRUMRANGE       ((float)OUTPUTRATE / 2.0f)     
 #define BINSIZE      (SPECTRUMRANGE / (float)SPECTRUMSIZE)
 
-float Note::Listen()
+bool Note::Listen()
 {
 	FMOD::System          *system  = 0;
     FMOD::Sound           *sound   = 0;
