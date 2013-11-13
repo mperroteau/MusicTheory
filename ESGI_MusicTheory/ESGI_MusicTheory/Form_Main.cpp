@@ -62,7 +62,7 @@ void Form_Main::StartTest(int arg_nbNotes, Parametre &_parametres)
 			while (nbcurrentnote < _nbNotes)
 			{
 				continu = false;
-				random_note = rand() % 97; 
+				random_note = rand() % 85; 
 				Note currentNote = currentNote.getNoteById(random_note);
 				
 

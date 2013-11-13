@@ -1,6 +1,4 @@
   ESGI_MusicTheory.Form_Main.resources - Embedded, ContainedInManifestFile, 
-  ESGI_MusicTheory.Form_Parametres.resources - Embedded, ContainedInManifestFile, 
-  ESGI_MusicTheory.Form_RandomTest.resources - Embedded, ContainedInManifestFile, 
 ImageRuntimeVersion: v4.0.30319
 Assembly ESGI_MusicTheory, Version=0.0.*, Culture=Langue indifférente (Pays indifférent): 
 	hash=SHA1, flags=PublicKey
@@ -16,9 +14,6 @@ Assembly System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=
 	hash=None, flags=None
 Assembly System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
 	hash=None, flags=None
-Class ESGI_MusicTheory.Form_Parametres: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
-  :System.Windows.Forms.Form
-    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
 Class ESGI_MusicTheory.Form_RandomTest: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -32,6 +27,13 @@ Class ESGI_MusicTheory.Form_RandomTest: AutoLayout, AnsiClass, Class, Public, Be
 Class ESGI_MusicTheory.Form_Main: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    System.Windows.Forms.Label frm_nbnotes : Public
+    System.Windows.Forms.Label frm_nbnotecourante : Public
+    System.Windows.Forms.Label frm_frequencecourante : Public
+    System.Windows.Forms.PictureBox frm_picturenote : Public
+    System.Windows.Forms.Label frm_thisnote : Public
+    System.Windows.Forms.Label l_Note : Public
   Methods:
     StartTest(Int32, Parametre* IsImplicitlyDereferenced): PrivateScope, Public, HideBySig
     StartParametres(): PrivateScope, Public, HideBySig

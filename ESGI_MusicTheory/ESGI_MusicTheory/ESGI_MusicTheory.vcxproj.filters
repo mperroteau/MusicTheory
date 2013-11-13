@@ -66,9 +66,6 @@
     <ClInclude Include="Score.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="Form_RandomTest.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\..\..\Program Files (x86)\FMOD SoundSystem\FMOD Programmers API Windows\api\inc\fmod.h">
       <Filter>Fichiers d%27en-tête\FMODEx</Filter>
     </ClInclude>

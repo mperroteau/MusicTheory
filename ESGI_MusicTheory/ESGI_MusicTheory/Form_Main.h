@@ -188,14 +188,14 @@ namespace ESGI_MusicTheory {
 			// instrumentSelector
 			// 
 			this->instrumentSelector->FormattingEnabled = true;
-			this->instrumentSelector->Items->AddRange(gcnew cli::array< System::Object^  >(14) {L"Default", L"Piccolo", L"Grande Flute", 
-				L"Flute Alto", L"Haubois", L"Cor Anglais", L"Clarinette", L"Clarinette basse", L"Basson", L"Contrebasson", L"Cor", L"Trompette", 
-				L"Trombone", L"Tuba"});
+			this->instrumentSelector->Items->AddRange(gcnew cli::array< System::Object^  >(5) {L"Default", L"Piccolo", L"Basson", L"Octave 5", 
+				L"Octave 6"});
 			this->instrumentSelector->SelectedIndex = 0;
 			this->instrumentSelector->Location = System::Drawing::Point(53, 137);
 			this->instrumentSelector->Name = L"instrumentSelector";
 			this->instrumentSelector->Size = System::Drawing::Size(121, 21);
 			this->instrumentSelector->TabIndex = 13;
+			this->instrumentSelector->Text = L"Default";
 			this->instrumentSelector->SelectedIndexChanged += gcnew System::EventHandler(this, &Form_Main::instrumentSelector_SelectedIndexChanged);
 			// 
 			// label1

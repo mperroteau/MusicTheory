@@ -100,9 +100,6 @@
     <ClInclude Include="Form_Main.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="Form_RandomTest.h">
-      <FileType>CppForm</FileType>
-    </ClInclude>
     <ClInclude Include="Instrument.h" />
     <ClInclude Include="Note.h" />
     <ClInclude Include="Parametre.h" />
@@ -142,9 +139,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Form_Main.resx">
       <DependentUpon>Form_Main.h</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form_RandomTest.resx">
-      <DependentUpon>Form_RandomTest.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
