@@ -238,6 +238,7 @@ void ERRCHECK(FMOD_RESULT result)
 #define SPECTRUMRANGE       ((float)OUTPUTRATE / 2.0f)     
 #define BINSIZE      (SPECTRUMRANGE / (float)SPECTRUMSIZE)
 
+//Fonction retourant true si la note est repérée
 bool Note::Listen()
 {
 	FMOD::System          *system  = 0;
@@ -261,6 +262,7 @@ bool Note::Listen()
 		float n_frequence = NULL;
 		string n_image = "";
 		
+		//On récupére toutes les notes du fichier afin de les ajoutées à une liste
 		while ( getline( f_notes, value ) )
 		{
 			char *sArr = new char[value.length()+1];
@@ -270,7 +272,7 @@ bool Note::Listen()
 
 			int i =1;	
 
-			// For all tokens.
+			//Pour chaque élément de la ligne en fonction de son emplacement.
 			while(sPtr != NULL) 
 			{
 				if (i==1)
@@ -298,6 +300,7 @@ bool Note::Listen()
 		f_notes.close();
 	}
 
+	//Instanciation et vérification des composants de la librairie FMOD
     result = FMOD::System_Create(&system);
     ERRCHECK(result);
 
@@ -344,11 +347,13 @@ bool Note::Listen()
        
     }
 
+	//Par défaut on définit le driver d'écoute à 0 (le premier de la listes des drivers)
     recorddriver = 0;
  
 
     printf("\n");
  
+	//Instanciation de tous les éléments -> infos, nombre de chaines, définitino du format
     result = system->setSoftwareFormat(OUTPUTRATE, FMOD_SOUND_FORMAT_PCM16, 1, 0, FMOD_DSP_RESAMPLER_LINEAR);
     ERRCHECK(result);
 
@@ -395,11 +400,13 @@ bool Note::Listen()
             key = _getch();
         }
 
+		//Récupére le spectre du son courant
         result = channel->getSpectrum(spectrum, SPECTRUMSIZE, 0, FMOD_DSP_FFT_WINDOW_TRIANGLE);
         ERRCHECK(result);
 
         max = 0;
 
+		//Parcours le spectre afin de déterminer la fréquence dominante dans le code
         for (count = 0; count < SPECTRUMSIZE; count++)
         {
             if (spectrum[count] > 0.01f && spectrum[count] > max)
@@ -409,31 +416,33 @@ bool Note::Listen()
             }
         }        
 
+		//Ajoute la variable en fonction de la fréquence dominante définie
         dominanthz  = (float)bin * BINSIZE; 
 
-		ESGI_MusicTheory::Form_Main^ _form = gcnew ESGI_MusicTheory::Form_Main;
-		//_form->setCurrentFrequence(dominanthz);
-		//_form->setCurrentFrequence(dominanthz.ToString());
-		_form->frm_frequencecourante->Text = dominanthz.ToString();
-		_form->frm_frequencecourante->Refresh();
-
-		
 		float current_frequence;
 
+		//Parcours la liste de notes
 		for (Note n: Notes)
 		{
 			current_frequence = n.frequence;
+
+			//Si la fréquence dominante est proche de la fréquence demandée
 			if (dominanthz <= (current_frequence+10) && dominanthz >= (current_frequence-10) )
 			{
+					//Alors la note courante écouté est définie en tant que variable dominante note
 					dominantnote = n;
+					//On sort de la fonction 
 					break;
 			}
 			
 		}
-		 printf("Frequence detectee : %7.1f\r", dominanthz);
+
+		//Affiche la fréquence détectée
+		printf("Frequence detectee : %7.1f\r", dominanthz);
 		int this_note_id = this->id;
 		int dominantnote_id = dominantnote.id;
 
+		//Si dla note est celle attendue, retourne true
 		if (this_note_id == dominantnote_id)
 			return true;
 
@@ -462,6 +471,7 @@ bool Note::Listen()
 
 }
 
+//Fonction permettant de différencier 2 compteurs
 double _diffclock( clock_t clock1, clock_t clock2 ) {
 
         double diffticks = clock1 - clock2;
@@ -470,6 +480,7 @@ double _diffclock( clock_t clock1, clock_t clock2 ) {
         return diffms;
     }
 
+//Surcharge de Listen() inculant un timer
 bool Note::Listen(double __timer)
 {
 	FMOD::System          *system  = 0;
