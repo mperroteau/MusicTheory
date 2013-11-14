@@ -59,14 +59,14 @@ void Form_Main::StartTest(int arg_nbNotes, Parametre &_parametres)
 			this->status->Text = "";
 			this->status->Refresh();
 
+			Note oldNote;
+
 			while (nbcurrentnote < _nbNotes)
 			{
 				continu = false;
-				random_note = rand() % 85; 
+				random_note = rand() % 55; 
 				Note currentNote = currentNote.getNoteById(random_note);
-				
-
-				
+							
 				min_frequence = _parametres.getInstru().GetNote_basse();
 				max_frequence = _parametres.getInstru().GetNote_haute();
 
@@ -74,16 +74,14 @@ void Form_Main::StartTest(int arg_nbNotes, Parametre &_parametres)
 				
 
 				float current_frequence = currentNote.GetFrequence();
-				
 
-				if (current_frequence >= min_frequence && current_frequence <= max_frequence)
+				if ((current_frequence >= min_frequence && current_frequence <= max_frequence) && (oldNote.GetFrequence()!=current_frequence))
 				{
 					
 					this->frm_nbnotecourante->Text = (nbcurrentnote+1).ToString();
 					this->frm_nbnotecourante->Refresh();
 
 					String^ _imagepath = gcnew String(currentNote.GetImage().c_str());
-					//this->frm_picturenote->Load(_imagepath);
 					if (_imagepath == "")
 					{
 						this->frm_picturenote->Image = nullptr;
@@ -95,21 +93,13 @@ void Form_Main::StartTest(int arg_nbNotes, Parametre &_parametres)
 						this->frm_picturenote->Refresh();
 					}
 					//Convertit un string "normal" afin de pouvoir l'afficher dans le label
-					this->frm_thisnote->Text = gcnew String(currentNote.GetNom().c_str());
+					this->frm_thisnote->Text = gcnew String(currentNote.GetNom().c_str())+" ("+currentNote.GetOctave().ToString()+")";
 					this->frm_thisnote->Refresh();
 
-					//timer
-					/*
-					System::Threading::TimerCallback^ tcb = gcnew System::Threading::TimerCallback(
-					Timer^ stateTimer = gcnew Timer(tcb, autoEvent, 1000, 250);*/
 
 					cout << "\n" << "Test sur la note : " << currentNote.GetNom() << " " <<currentNote.GetOctave()<<  " - "<<currentNote.GetFrequence() << "\n";
 					cn_name = currentNote.GetNom();
-
-					
-					//if timer
-
-					
+		
 
 					while (true)
 					{
@@ -131,23 +121,14 @@ void Form_Main::StartTest(int arg_nbNotes, Parametre &_parametres)
 							status->Text = "Bien joué !";
 						}
 						else 
-							status->Text = "Essai encore ...";
+							status->Text = "Trop tard ...";
 						status->Refresh();
 						break;
 					}
 
-					//while (continu == false)
-					//{
-					//	//Faire le random dans le while et n'utiliser le listen que pour lire dans le micro
-					//	//Faire toutes les vérifications ici afin de povoir
-					//	//continu = currentNote.Listen();
-					//	continu = currentNote.Listen();
-					//	
-					//}
-
-					/*si timer faire en fonction du timer*/
 					cout << "OK \n";
 					nbcurrentnote ++;
+					oldNote = currentNote;
 					
 				}
 				

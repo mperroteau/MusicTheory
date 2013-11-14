@@ -412,73 +412,12 @@ private:System::Void BT_RandomTest_Click(System::Object^  sender, System::EventA
 			StartTest(_nbnote, *p);
 		}
 	}
-	//			//Note *notecourante = new Note(n_id,n_nom,n_nom_2,n_octave,n_frequence,"", ""); //Le dernier champs étant l'image -> TO DO
-
-	//			_Instruments.push_back(Instrument(i_nom,i_type,i_note_basse,i_note_haute));
-	//		
-	//		
-	//	}
-	//		
-
-	//		f_instuments.close();
-	//	}
-	//	//Instrument inst_param;
-	//	Parametre *p=new Parametre();
-	//	for (Instrument i : _Instruments)
-	//	{
-	//		if (i.GetNom() == "p_nom")
-	//			p = new Parametre(i,p_level,p_nbnotes);
-
-	//	}
-	//	f_parametres.close();
-
-			/*for (int i = 0; i < 5; i++)
-			{
-				test->Text = i.ToString();
-				test->Refresh();
-			}
-			*/
-
-			//for (int i = 0; i < 5; i++)
-			//{
-			//	String^ t = "hello";
-			//	l_Note->Text = t;  
-			//}
-
-			//StartTest(5, *p);			
+	
 			
 	}
 	
 	private: System::Void BT_Parametres_Click(System::Object^  sender, System::EventArgs^  e) {
-			//Form_Parametres^ form_p = gcnew Form_Parametres();
-			//form_p->Show();
-				 //StartParametres();
 
-
-		//ofstream fichier("Parametres.csv", ios::out | ios::trunc);  // ouverture en écriture avec effacement du fichier ouvert
-  //
-  //      if(fichier)
-  //      {
-		//	fichier.clear;
-			//int Index = comboBox_instument->SelectedIndex;
-			/*Object^ selectedInstrument = comboBox_instument->SelectedItem;
-		   			
-			Object^ selectedNiveau = comboBox_level->SelectedItem;
-			Object^ nb_notes = textBox_nb_elements->Text;
-			
-			System::String^ instrument = selectedInstrument->ToString();
-			System::String^ niveau = comboBox_level->ToString();
-			System::String^ nb_notes = nb_notes->ToString();
-
-			string instru = instrument;
-			fichier << &instrument << ";"<< &niveau << ";"<<&nb_notes;*/
-       /* }
-        else
-                cerr << "Impossible d'ouvrir le fichier !" << endl;
-      
-		 }
-
-			 }*/
 			 }
 	private: System::Void Form_Main_Load(System::Object^  sender, System::EventArgs^  e) {
 			 }
