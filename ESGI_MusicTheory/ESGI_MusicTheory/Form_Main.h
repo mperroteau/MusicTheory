@@ -285,131 +285,74 @@ namespace ESGI_MusicTheory {
 	public : 
 		void StartTest(int _nbNotes, Parametre &_parametres);
 		void StartParametres();
-		//void setCurrentFrequence(String^ _current)
-		//{
-		//	if (frm_frequencecourante->InvokeRequired)
-		//		{
-		//			// this executes on the worker thread
-		//			frm_frequencecourante->Invoke (gcnew Action<String^>(this->setCurrentFrequence), _current);
-		//			//frm_frequencecourante->Invoke(gcnew Action(setCurrentFrequence), _current);
-		//			return;
-
-		//		}  
-		//	frm_frequencecourante->Text = _current; // this executes on the main thread
-		//	frm_frequencecourante->Refresh();
-
-		//}
 
 
 
 private:System::Void BT_RandomTest_Click(System::Object^  sender, System::EventArgs^  e) {
-			//Form_RandomTest^ form_rdt = gcnew Form_RandomTest();
-			//form_rdt->Show();
-			//Instrument *i = new Instrument();
-			//getinstrument
-			/*Instrument *i = new Instrument("Default", "Default", static_cast<float>(261.6),static_cast<float>(523.2));			
-			Parametre *p = new Parametre(*i);*/
 
-	//		string fichier_instrument;
-	//	ifstream f_parametres("Data/Parametres.csv"); 
-	//	string value;
-
-	//	if (f_parametres)
-	//	{
-	//		string p_nom = "";
-	//		int p_level;
-	//		int p_nbnotes;
-
-	//	
-	//		while ( getline( f_parametres, value ) )
-	//		{
-	//			char *sArr = new char[value.length()+1];
-	//			strcpy(sArr, value.c_str());
-	//			// Déclare un pointeur char
-	//			char *sPtr;
-	//			// Donne le delimiter
-	//			sPtr = strtok(sArr, ";");
-
-	//			int i =1;	
- //
-	//			// Pour toute chaine entre ;
-	//			while(sPtr != NULL) 
-	//			{
-	//				if (i==1)
-	//					p_nom = sPtr;
-	//				else if (i==2)
-	//					p_level = atoi(sPtr);
-	//				else if (i==3)
-	//					p_nbnotes = atoi(sPtr);
-	//			
-	//				
-	//				// Aller jusqu'au prochain mot
-	//				sPtr = strtok(NULL, ";");
-
-	//				i++;
-	//			}			
-	//		
-	//		
-	//	}
 	string fichier_instrument;
 	ifstream f_instuments("Data/Instruments.csv"); 
 	string value;
-	list<Instrument> _Instruments;
 
-		if (f_instuments)
-		{
-			string i_nom = "";
-			string i_type = "";
-			float i_note_basse = NULL;
-			float i_note_haute = NULL;
-		
-			while ( getline( f_instuments, value ) )
+	if (this->par_nbnotes->Text != "")
+	{
+		list<Instrument> _Instruments;
+
+			if (f_instuments)
 			{
-				char *sArr = new char[value.length()+1];
-				strcpy(sArr, value.c_str());
-				
-				// Declare char pointer sPtr for the tokens.
-				char *sPtr;
-				// Get all the tokens with " " as delimiter.
-				sPtr = strtok(sArr, ";");
-
-				int i =1;	
- 
-				// For all tokens.
-				while(sPtr != NULL) 
+				string i_nom = "";
+				string i_type = "";
+				float i_note_basse = NULL;
+				float i_note_haute = NULL;
+		
+				while ( getline( f_instuments, value ) )
 				{
-					if (i==1)
-						i_nom = sPtr;
-					else if (i==2)
-						i_type = sPtr;
-					else if (i==3)
-						i_note_basse = static_cast<float>(atof(sPtr));
-					else if (i==4)
-						i_note_haute = static_cast<float>(atof(sPtr));
+					char *sArr = new char[value.length()+1];
+					strcpy(sArr, value.c_str());
+				
+					// Declare char pointer sPtr for the tokens.
+					char *sPtr;
+					// Get all the tokens with " " as delimiter.
+					sPtr = strtok(sArr, ";");
+
+					int i =1;	
+ 
+					// For all tokens.
+					while(sPtr != NULL) 
+					{
+						if (i==1)
+							i_nom = sPtr;
+						else if (i==2)
+							i_type = sPtr;
+						else if (i==3)
+							i_note_basse = static_cast<float>(atof(sPtr));
+						else if (i==4)
+							i_note_haute = static_cast<float>(atof(sPtr));
 
 					
-					// Go to the next word.
-					sPtr = strtok(NULL, ";");
+						// Go to the next word.
+						sPtr = strtok(NULL, ";");
 
-					i++;
-				}
-				//Note *notecourante = new Note(n_id,n_nom,n_nom_2,n_octave,n_frequence,"", ""); //Le dernier champs étant l'image -> TO DO
+						i++;
+					}
+					//Note *notecourante = new Note(n_id,n_nom,n_nom_2,n_octave,n_frequence,"", ""); //Le dernier champs étant l'image -> TO DO
 
-				_Instruments.push_back(Instrument(i_nom,i_type,i_note_basse,i_note_haute));		
-		}		
-			f_instuments.close();
-		}
-	String^ _instrumentSelector = (instrumentSelector->Text);
+					_Instruments.push_back(Instrument(i_nom,i_type,i_note_basse,i_note_haute));		
+			}		
+				f_instuments.close();
+			}
+		String^ _instrumentSelector = (instrumentSelector->Text);
 
-	for (Instrument i : _Instruments)
-	{
-		String^ _instrumentName = gcnew String(i.GetNom().c_str());
-		if (_instrumentName == _instrumentSelector)
+		for (Instrument i : _Instruments)
 		{
-			//!!!normalement *i
-			Parametre *p = new Parametre(i);
-			int _nbnote = Convert::ToInt32(par_nbnotes->Text);
-			StartTest(_nbnote, *p);
+			String^ _instrumentName = gcnew String(i.GetNom().c_str());
+			if (_instrumentName == _instrumentSelector)
+			{
+				//!!!normalement *i
+				Parametre *p = new Parametre(i);
+				int _nbnote = Convert::ToInt32(par_nbnotes->Text);
+				StartTest(_nbnote, *p);
+			}
 		}
 	}
 	
